@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 void Sort(int array[], int arraySize)
 {
 	for (int i = 0; i < arraySize - 1; i++)
