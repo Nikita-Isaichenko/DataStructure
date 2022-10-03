@@ -1,0 +1,1 @@
+void PrintDynamicArray(DynamicArray*);

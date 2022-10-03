@@ -1,41 +1,65 @@
 ﻿#include <iostream>
 #include "DynamicArray.h"
+#include "Actions.h"
+
 using namespace std;
 
 int main()
 {    
     setlocale(LC_ALL, "ru");
 
-    DynamicArray* array = new DynamicArray;
-    int n = 0;
-     
-    CreatDynamicArray(array);    
+    DynamicArray* dynamicArray = new DynamicArray();
+    int number;
     
-    //while (n != -1)
-    //{
-    //    cin >> n;
-    //    Add(array, n);
-    //    
-    //    //cout << array->array[array->size - 1] << endl;
-    //}
-    InitRandomValues(array, 7);
+    cout << "Выберите номер действия: ";
+    cin >> number;
 
-    PrintArray(array);    
-    RemoveAt(array, -1);
-    PrintArray(array);
-    Insert(array, 11, 0);
-    PrintArray(array);
-    Insert(array, 11, 3);
-    PrintArray(array);
-    Insert(array, 11, 5);
-    PrintArray(array);
-    Sort(array);
-    PrintArray(array);
-    cout << BinarySearch(array, 1) << endl;
-    cout << LinearSearch(array, 1) << endl;
+    while (true)
+    {
+        cout << "0. Завершить программу.\n1. Создать динамический массив.\n"
+                "2. Добававить значение в массив.\n3. Удалить значение из массива.\n" 
+                "4. Вставить элемент по индексу в массив.\n5. Сортировать массив.\n"
+                "6. Линейный поиск элемента.\n7.Бинарный поиск элемента.\n"
+                "8. Пересоздать массив.\n9. Вывести массив\n10. Очистить консоль."<< endl;
 
-    delete[] array->array;
-    delete array;
+        cout << "Введите номер действия: ";
+        cin >> number;
 
-    cin >> n;   
+        switch (number)
+        {
+        case 0:
+            return -1;
+            break;
+        case 1:
+            //CreatDynamicArray(dynamicArray);
+            break;
+        /*case 2:
+            AddElement(dynamicArray);
+            break;
+        case 3:
+            RemoveElement(dynamicArray);
+            break;
+        case 4:
+            InsertElement(dynamicArray);
+            break;
+        case 5:
+            SortArray(dynamicArray);
+            break;
+        case 6:
+            LinearSearchElement(dynamicArray);
+            break;
+        case 7:
+            BinarySearchElement(dynamicArray);
+            break;
+        case 8:
+            RecreatDynamicArray(dynamicArray);
+            break;*/
+        case 9:
+            PrintDynamicArray(dynamicArray);
+            break;
+        case 10:
+            system("cls");
+        }
+    }
+
 }

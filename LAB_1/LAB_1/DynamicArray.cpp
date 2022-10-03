@@ -6,7 +6,7 @@ using namespace std;
 
 
 
-void CreatDynamicArray(DynamicArray* array)
+void InitDynamicArray(DynamicArray* array)
 {
 	int capacity = 8;
 
@@ -132,10 +132,9 @@ void PrintArray(DynamicArray* array)
 	}
 
 	cout << endl;
-	cout << array->size << endl;
 }
 
-void InitRandomValues(DynamicArray* array, int size)
+void InitRandomElements(DynamicArray* array, int size)
 {
 	srand(time(0));
 
