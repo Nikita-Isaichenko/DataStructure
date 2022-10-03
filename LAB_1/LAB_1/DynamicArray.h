@@ -1,4 +1,6 @@
-struct DynamicArray 
+#pragma once
+
+struct DynamicArray
 {
 	int* array;
 	int size;

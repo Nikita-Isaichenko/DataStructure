@@ -2,28 +2,26 @@
 #include "DynamicArray.h"
 #include "Actions.h"
 
+void PrintText();
+
 using namespace std;
 
 int main()
 {    
     setlocale(LC_ALL, "ru");
 
-    DynamicArray* dynamicArray = new DynamicArray();
+    DynamicArray* array = new DynamicArray;
     int number;
-    
-    cout << "Выберите номер действия: ";
-    cin >> number;
+
+    CreatDynamicArray(array);
+    PrintText();
 
     while (true)
-    {
-        cout << "0. Завершить программу.\n1. Создать динамический массив.\n"
-                "2. Добававить значение в массив.\n3. Удалить значение из массива.\n" 
-                "4. Вставить элемент по индексу в массив.\n5. Сортировать массив.\n"
-                "6. Линейный поиск элемента.\n7.Бинарный поиск элемента.\n"
-                "8. Пересоздать массив.\n9. Вывести массив\n10. Очистить консоль."<< endl;
-
+    {      
         cout << "Введите номер действия: ";
         cin >> number;
+        cout << "\n--------------------------------------------" << endl;
+        cout << "                                           |" << endl;
 
         switch (number)
         {
@@ -31,35 +29,51 @@ int main()
             return -1;
             break;
         case 1:
-            //CreatDynamicArray(dynamicArray);
+            system("cls");
+            PrintText();
             break;
-        /*case 2:
-            AddElement(dynamicArray);
+        case 2:
+            AddElement(array);
             break;
         case 3:
-            RemoveElement(dynamicArray);
+            RemoveElement(array);           
             break;
         case 4:
-            InsertElement(dynamicArray);
+            InsertElement(array);          
             break;
         case 5:
-            SortArray(dynamicArray);
+            SortArray(array);
             break;
         case 6:
-            LinearSearchElement(dynamicArray);
+            LinearSearchElement(array);
             break;
         case 7:
-            BinarySearchElement(dynamicArray);
+            BinarySearchElement(array);
             break;
         case 8:
-            RecreatDynamicArray(dynamicArray);
-            break;*/
-        case 9:
-            PrintDynamicArray(dynamicArray);
+            RecreatDynamicArray(array);
             break;
-        case 10:
-            system("cls");
+        case 9:
+            PrintArray(array);
+            break;
+        default:
+            cout << "Некорректный номер действия!";
         }
+        cout << "                                           |" << endl;
+        cout << "--------------------------------------------\n" << endl;
     }
 
+    delete[] array->array;
+    delete array;
+
+}
+
+void PrintText()
+{
+    cout << "0. Завершить программу.\n1. Очистить консоль.\n"
+        "2. Добавить значение в массив.\n3. Удалить значение из массива.\n"
+        "4. Вставить элемент по индексу в массив.\n5. Сортировать массив.\n"
+        "6. Линейный поиск элемента.\n7.Бинарный поиск элемента.\n"
+        "8. Пересоздать массив.\n9. Вывести массив\n" << endl;
+    cout << endl;
 }

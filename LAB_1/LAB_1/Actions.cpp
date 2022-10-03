@@ -1,56 +1,51 @@
-#include "Actions.h"
-#include "DynamicArray.h"
 #include <iostream>
-
+#include "Actions.h"
 using namespace std;
 
+bool isSort;
 
-void CreatDynamicArray() 
-{	
-	//InitDynamicArray(dynamicArray);
+void CreatDynamicArray(DynamicArray* dynamicArray)
+{
+	InitDynamicArray(dynamicArray);
 
+	cout << "Создание массива: " << endl;
 	char mode = 'n';
 	int size = 4;
-	cout << "Инициализировать значения массива рандомными значениями?(y/n)";
+	cout << "Заполнить массив автоматические рандомными числами? (y/n): ";
 	cin >> mode;
 
 	if (mode == 'y')
 	{
-		cout << "Введите размер массива: ";
+		cout << "Укажите размер массива: ";
 		cin >> size;
 
-		//InitRandomElements(dynamicArray, size);
-		
+		InitRandomElements(dynamicArray, size);
+		cout << "Динамический массив создан" << endl;
 	}
-	/*if (mode == 'n')
-	{
-		return;
-	}
-	if (mode != 'n' && mode != 'y') 
-	{
-		cout << "Некорректный ввод!";
-		return;
-	}*/	
+
+	isSort = false;
 }
 
 void AddElement(DynamicArray* dynamicArray)
 {
 	int element = 0;
 
-	cout << "Введите числовое значение элемента для добавления: ";
+	cout << "Введите числовое значение элемента для добавления в массив: ";
 	cin >> element;
 
 	Add(dynamicArray, element);
+	PrintArray(dynamicArray);
 }
 
 void RemoveElement(DynamicArray* dynamicArray)
 {
 	int index;
 
-	cout << "Введите индекс удаляемого элемента";
+	cout << "Введите индекс удаляемого элемента: ";
 	cin >> index;
 
 	RemoveAt(dynamicArray, index);
+	PrintArray(dynamicArray);
 }
 
 void InsertElement(DynamicArray* dynamicArray)
@@ -58,47 +53,61 @@ void InsertElement(DynamicArray* dynamicArray)
 	int element;
 	int index;
 
-	cout << "Введите значение вставляемого элемента: ";
+	cout << "Введите числовое значение, которое необходимо вставить: ";
 	cin >> element;
-	cout << "Введите индекс по которому необходимо вставить элемент: ";
+	cout << "Введите индекс для вставляемого элемента: ";
 	cin >> index;
 
 	Insert(dynamicArray, element, index);
+	PrintArray(dynamicArray);
 }
 
 void SortArray(DynamicArray* dynamicArray)
 {
+	cout << "Отсортированный массив: ";
 	Sort(dynamicArray);
+	PrintArray(dynamicArray);
+
+	isSort = true;
 }
 
 void LinearSearchElement(DynamicArray* dynamicArray)
 {
 	int element;
-	cout << "Введите значение искомого элемента: ";
+	int indexOfFoundElement;
+
+	cout << "Введите искомое значение: ";
 	cin >> element;
 
-	LinearSearch(dynamicArray, element);
+	indexOfFoundElement = LinearSearch(dynamicArray, element);
+
+	cout << "Искомое значение: " << element <<
+		" находится под индексом: " << indexOfFoundElement << endl;
 }
 
 void BinarySearchElement(DynamicArray* dynamicArray)
 {
+	if (!isSort)
+	{
+		cout << "Для бинарного поиска необходимо отсортировать массив" << endl;
+		return;
+	}
+
 	int element;
-	cout << "Введите значение искомого элемента: ";
+	int indexOfFoundElement;
+
+	cout << "Введите искомый элемент: ";
 	cin >> element;
 
-	BinarySearch(dynamicArray, element);
+	indexOfFoundElement = BinarySearch(dynamicArray, element);
+
+	cout << "Искомое значение: " << element <<
+		" находится под индексом:  " << indexOfFoundElement << endl;
 }
 
 void RecreatDynamicArray(DynamicArray* dynamicArray)
 {
-	//delete[] dynamicArray->array;
-	
-	
-}
+	delete[] dynamicArray->array;
 
-void PrintDynamicArray(DynamicArray* dynamicArray)
-{
-	cout << "Вывод динамического массива: " << endl;
-	//PrintArray(dynamicArray);
+	CreatDynamicArray(dynamicArray);
 }
-

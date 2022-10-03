@@ -5,7 +5,6 @@
 using namespace std;
 
 
-
 void InitDynamicArray(DynamicArray* array)
 {
 	int capacity = 8;
@@ -35,10 +34,10 @@ void ResizeDynamicArray(DynamicArray* array)
 void Add(DynamicArray* array, int element) 
 {
 	if (array->size >= array->capacity) 
-	{
-		cout << "flag" << endl;
+	{		
 		ResizeDynamicArray(array);
 	}
+
 	array->size++;
 	array->array[array->size - 1] = element;
 }
@@ -126,6 +125,8 @@ int BinarySearch(DynamicArray* array, int element)
 
 void PrintArray(DynamicArray* array)
 {
+	cout << "Массив: ";
+
 	for (int i = 0; i < array->size; i++)
 	{
 		cout << array->array[i] << " ";
@@ -142,7 +143,7 @@ void InitRandomElements(DynamicArray* array, int size)
 
 	for (int i = 0; i < size; i++)
 	{
-		value = rand() % 10;
+		value = rand() % 100;
 		Add(array, value);
 	}
 }
