@@ -173,6 +173,7 @@ int* MakeRandomArray(int arraySize)
 int* ReadArray(int count)
 {
 	int* values = new int[count];
+
 	for (int i = 0; i < count; i++)
 	{
 		cin >> values[i];
@@ -184,6 +185,7 @@ int* ReadArray(int count)
 int CountPositiveValues(int* values, int count)
 {
 	int result = 0;
+
 	for (int i = 0; i < count; i++)
 	{
 		if (values[i] > 0)

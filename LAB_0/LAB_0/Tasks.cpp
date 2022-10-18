@@ -280,7 +280,6 @@ void Task1151()
 	cout << endl;
 
 	delete[] arrayDouble;
-	delete arrayDouble;
 }
 
 void Task1152()
@@ -294,7 +293,6 @@ void Task1152()
 	cout << endl;
 
 	delete[] arrayBool;
-	delete arrayBool;
 }
 
 void Task1153()
@@ -321,24 +319,23 @@ void Task1153()
 	cout << endl;
 
 	delete[] arrayChar;
-	delete arrayChar;
 }
 
 void Task1154()
 {
 	const int arraySize = 10;
 
-	double* pArr = new double[arraySize] {1.0, 15.0, -8.2, -3.5, 12.6, 38.4, -0.5, 4.5, 16.7, 4.5};
+	double* doubleArray = new double[arraySize] {1.0, 15.0, -8.2, -3.5, 12.6, 38.4, -0.5, 4.5, 16.7, 4.5};
 
 	cout << "Array of double: " << endl;
 
-	PrintArray(pArr, arraySize);
+	PrintArray(doubleArray, arraySize);
 
 	cout << "Sorted array of double: " << endl;
 
-	Sort(pArr, arraySize);
+	Sort(doubleArray, arraySize);
 
-	delete[] pArr;
+	delete[] doubleArray;
 }
 
 void Task1155()
@@ -347,18 +344,18 @@ void Task1155()
 
 	int value;
 
-	int* pArr = new int[arraySize] {1, 15, -8, -3, 12, 38, 0, 4, 16, 4};
+	int* intArray = new int[arraySize] {1, 15, -8, -3, 12, 38, 0, 4, 16, 4};
 
 	cout << "Int array: \n" << endl;
 	
-	PrintArray(pArr, arraySize);
+	PrintArray(intArray, arraySize);
 
 	cout << "Enter searching value: ";
 	cin >> value;
 	cout << "Index of searching value" << value << "is: "
-		<< ValueIndexInArray(pArr, arraySize, value) << endl;
+		<< ValueIndexInArray(intArray, arraySize, value) << endl;
 	
-	delete[] pArr;
+	delete[] intArray;
 
 }
 
@@ -366,18 +363,18 @@ void Task1156()
 {
 	const int arraySize = 15;
 
-	char* pArr = new char[arraySize] 
+	char* charArray = new char[arraySize] 
 	{'f', 'g', '%', '*', 'd', '@', '9', '%', ')', 'C', '<', 'd', 't', '4', '!'};
 
 	cout << "Char array is: " << endl;
 
-	PrintArray(pArr, arraySize);
+	PrintArray(charArray, arraySize);
 
 	cout << "Letters in array:" << endl;
 
-	PrintOnlyLetters(pArr, arraySize);
+	PrintOnlyLetters(charArray, arraySize);
 
-	delete[] pArr;
+	delete[] charArray;
 }
 
 void Task1157() 

@@ -16,8 +16,7 @@ void InitDynamicArray(DynamicArray* array)
 
 void ResizeDynamicArray(DynamicArray* array)
 {
-	int capacity = 8;
-	array->capacity += capacity;
+	array->capacity += array->capacity;
 
 	int* tempArray = new int[array->capacity];
 

@@ -17,15 +17,17 @@ int main()
     PrintText();
 
     while (true)
-    {      
-        cout << "Введите номер действия: ";
-        cin >> number;
+    {    
         cout << "\n--------------------------------------------" << endl;
         cout << "                                           |" << endl;
+        cout << "Введите номер действия: ";
+        cin >> number;
 
         switch (number)
         {
         case 0:
+            delete[] array->array;
+            delete array;
             return -1;
             break;
         case 1:
@@ -62,10 +64,6 @@ int main()
         cout << "                                           |" << endl;
         cout << "--------------------------------------------\n" << endl;
     }
-
-    delete[] array->array;
-    delete array;
-
 }
 
 void PrintText()
