@@ -108,18 +108,19 @@ int BinarySearch(DynamicArray* array, int element)
 	{
 		middle = (first + last) / 2;
 
-		if (element <= array->array[middle]) 
+		if (element < array->array[middle]) 
 		{
 			last = middle;
 		}
-		else
+		if (element > array->array[middle])
 		{
 			first = middle + 1;
 		}
+		if (element == array->array[middle])
+		{
+			return middle;
+		}
 	}
-
-	return (first == array->size ||
-			array->array[first] != element) ? -1 : first;
 }
 
 void PrintArray(DynamicArray* array)
