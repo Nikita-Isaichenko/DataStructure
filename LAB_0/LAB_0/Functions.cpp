@@ -144,10 +144,10 @@ int ValueIndexInArray(int* array, int arraySize, int value)
 
 void PrintOnlyLetters(char* array, int arraySize)
 {
-	// TODO:
 	for (int i = 0; i < arraySize; i++)
 	{
-		if ((array[i] > 'a' && array[i] < 'z') || (array[i] > 'A' && array[i] < 'Z'))
+		if ((array[i] > 'a' && array[i] < 'z') 
+			|| (array[i] > 'A' && array[i] < 'Z'))
 		{
 			cout << array[i] << ' ';
 		}
@@ -158,13 +158,13 @@ void PrintOnlyLetters(char* array, int arraySize)
 
 int* MakeRandomArray(int arraySize)
 {
-	srand(time(0));
+	srand(time(nullptr));
 
 	int* array = new int[arraySize];
 
 	for (int i = 0; i < arraySize; i++)
 	{
-		array[i] = rand() % (100 - 0 + 1) + 0;;
+		array[i] = rand() % 101;
 	}
 
 	return array;

@@ -36,8 +36,8 @@ void Task1122()
 {
 	const int arraySize = 12;
 
-	double arrayDouble[arraySize] = { 12.0, 21.5, 119.2, -80.7, 300.0, 75.5, 81.2,
-							8.1, 47.3, 31.2, 85.3, 100.1 };
+	double arrayDouble[arraySize] =
+		{ 12.0, 21.5, 119.2, -80.7, 300.0, 75.5, 81.2, 8.1, 47.3, 31.2, 85.3, 100.1 };
 
 	double searchingValue = 0;
 
@@ -271,7 +271,8 @@ void Task1151()
 {
 	const int arraySize = 8;
 
-	double* arrayDouble = new double[arraySize] { 1.0, 15.0, -8.2, -3.5, 12.6, 38.4, -0.5, 4.5};
+	double* arrayDouble = 
+		new double[arraySize] { 1.0, 15.0, -8.2, -3.5, 12.6, 38.4, -0.5, 4.5};
 
 	cout << "Array of double: " << endl;
 
@@ -286,7 +287,8 @@ void Task1152()
 {
 	const int arraySize = 8;
 
-	bool* arrayBool = new bool[arraySize] {true, false, false, true, false, true, true, true};
+	bool* arrayBool = 
+		new bool[arraySize] {true, false, false, true, false, true, true, true};
 
 	PrintArray(arrayBool, arraySize);
 
@@ -305,7 +307,6 @@ void Task1153()
 
 	char* arrayChar = new char[arraySize];
 
-	// TODO:
 	for (int i = 0; i < arraySize; i++)
 	{
 		cout << "Enter a[" << i << "]: ";
@@ -325,7 +326,8 @@ void Task1154()
 {
 	const int arraySize = 10;
 
-	double* doubleArray = new double[arraySize] {1.0, 15.0, -8.2, -3.5, 12.6, 38.4, -0.5, 4.5, 16.7, 4.5};
+	double* doubleArray =
+		new double[arraySize] {1.0, 15.0, -8.2, -3.5, 12.6, 38.4, -0.5, 4.5, 16.7, 4.5};
 
 	cout << "Array of double: " << endl;
 

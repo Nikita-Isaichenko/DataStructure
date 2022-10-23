@@ -9,7 +9,6 @@ int main()
 
 	int taskNumber = 0;
 
-	// TODO:
 	while (true)
 	{
 		cout << "0 - Exit for program\n1 - Task 1.1.1.1\n2 - Task 1.1.1.2\n3 - Task 1.1.2.1\n"
@@ -29,7 +28,6 @@ int main()
 		{
 		case 0:
 			return -1;
-			break;
 		case 1:
 			Task1111();
 			break;
