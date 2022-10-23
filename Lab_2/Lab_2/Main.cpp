@@ -10,12 +10,15 @@ int main()
 
 	List* list = new List();
 
+	InitList(list);
+
 	Add(list, 2);
-	Add(list, 3);
-	Add(list, 4);
-	Add(list, 2);
-	Add(list, 7);
-	Add(list, 9);
+	
+	Remove(list, 0);
+
+	Show(list);
+
+	Add(list, 5);
 
 	Show(list);
 }
