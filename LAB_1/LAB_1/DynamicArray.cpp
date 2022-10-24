@@ -4,92 +4,120 @@
 
 using namespace std;
 
-
+/**
+ * »нициалирует динамический массив.
+ * 
+ * \param array
+ */
 void InitDynamicArray(DynamicArray* array)
 {
 	int capacity = 8;
 
-	array->capacity = capacity;
-	array->size = 0;
-	array->array = new int[array->capacity];
+	array->Capacity = capacity;
+	array->Size = 0;
+	array->Array = new int[array->Capacity];
+	array->IsSorted = false;
 }
 
+/**
+ * ”величивает размер буффера динамического массива
+ * при достижении заполнении прежнего.
+ * 
+ * \param array
+ */
 void ResizeDynamicArray(DynamicArray* array)
 {
-	array->capacity += array->capacity;
+	//TODO: const?
+	//TODO: уменьшение размера массива
+	array->Capacity += array->Capacity * 1.5;
 
-	int* tempArray = new int[array->capacity];
+	int* tempArray = new int[array->Capacity];
 
-	for (int i = 0; i < array->size; i++) 
+	for (int i = 0; i < array->Size; i++) 
 	{
-		tempArray[i] = array->array[i];
+		tempArray[i] = array->Array[i];
 	}
 
-	delete[] array->array;
+	delete[] array->Array;
 
-	array->array = tempArray;
+	array->Array = tempArray;
 }
 
+/**
+ * .
+ * 
+ * \param array
+ * \param element
+ */
 void Add(DynamicArray* array, int element) 
 {
-	if (array->size >= array->capacity) 
+	if (array->Size >= array->Capacity) 
 	{		
 		ResizeDynamicArray(array);
 	}
 
-	array->size++;
-	array->array[array->size - 1] = element;
+	array->Size++;
+	array->Array[array->Size - 1] = element;
+	array->IsSorted = false;
 }
 
 void RemoveAt(DynamicArray* array, int index) 
 {
 	if (CheckIndexOutRange(array, index)) return;		
 
-	for (int i = index; i < array->size - 1; i++)
+	for (int i = index; i < array->Size - 1; i++)
 	{
-		array->array[i] = array->array[i + 1];
+		array->Array[i] = array->Array[i + 1];
 	}
 
-	array->size--;
+	array->Size--;
+	array->IsSorted = false;
 }
 
-void Insert(DynamicArray* array, int element, int index) 
+int Insert(DynamicArray* array, int element, int index) 
 {	
-	if (CheckIndexOutRange(array, index)) return;
+	if (CheckIndexOutRange(array, index))
+	{
+		return -1;
+	}
 
-	if (array->size >= array->capacity) 
+	if (array->Size >= array->Capacity) 
 	{
 		ResizeDynamicArray(array);
 	}
 
-	for (int i = 0; i < array->size - index; i++)
+	for (int i = 0; i < array->Size - index; i++)
 	{
-		array->array[array->size - i] = array->array[array->size - i - 1];
+		array->Array[array->Size - i] = array->Array[array->Size - i - 1];
 	}
 
-	array->array[index] = element;
-	array->size++;
+	array->Array[index] = element;
+	array->Size++;
+	array->IsSorted = false;
+	return 0;
 }
 
 void Sort(DynamicArray* array)
 {
-	for (int i = 0; i < array->size - 1; i++)
+	for (int i = 0; i < array->Size - 1; i++)
 	{
-		for (int j = i + 1; j < array->size; j++)
+		for (int j = i + 1; j < array->Size; j++)
 		{
-			if (array->array[j] < array->array[i])
+			if (array->Array[j] < array->Array[i])
 			{
-				swap(array->array[j], array->array[i]);
+				swap(array->Array[j], array->Array[i]);
 			}
 		}
 	}
+
+	array->IsSorted = true;
 }
 
 int LinearSearch(DynamicArray* array, int element)
 {
-	for (int i = 0; i < array->size; i++)
+	for (int i = 0; i < array->Size; i++)
 	{
-		if (element == array->array[i]) 
+		if (element == array->Array[i]) 
 		{			
 			return i;
 		}
@@ -101,35 +129,37 @@ int LinearSearch(DynamicArray* array, int element)
 int BinarySearch(DynamicArray* array, int element)
 {
 	int first = 0;
-	int last = array->size-1;
+	int last = array->Size-1;
 	int middle;
+	int searchIndex = -1;
 
 	while (first < last)
 	{
 		middle = (first + last) / 2;
 
-		if (element < array->array[middle]) 
+		if (element < array->Array[middle]) 
 		{
 			last = middle;
 		}
-		if (element > array->array[middle])
+		if (element > array->Array[middle])
 		{
 			first = middle + 1;
 		}
-		if (element == array->array[middle])
+		if (element == array->Array[middle])
 		{
-			return middle;
+			searchIndex = middle;
+			break;
 		}
 	}
+
+	return searchIndex;
 }
 
 void PrintArray(DynamicArray* array)
 {
-	cout << "ћассив: ";
-
-	for (int i = 0; i < array->size; i++)
+	for (int i = 0; i < array->Size; i++)
 	{
-		cout << array->array[i] << " ";
+		cout << array->Array[i] << " ";
 	}
 
 	cout << endl;
@@ -137,7 +167,7 @@ void PrintArray(DynamicArray* array)
 
 void InitRandomElements(DynamicArray* array, int size)
 {
-	srand(time(0));
+	srand(time(nullptr));
 
 	int value;
 
@@ -150,13 +180,11 @@ void InitRandomElements(DynamicArray* array, int size)
 
 bool CheckIndexOutRange(DynamicArray* array, int index)
 {
-	if (index < 0 || index > array->size - 1)
-	{
-		cout << "индекс €вл€етс€ отрицательным числом, либо выходит за границы массива" << endl;
-		return true;
-	}
-	else 
-	{
-		return false;
-	}
+	return (index < 0 || index > array->Size - 1);
+}
+
+void DeleteArray(DynamicArray* array) 
+{
+	delete[] array->Array;
+	delete array;
 }

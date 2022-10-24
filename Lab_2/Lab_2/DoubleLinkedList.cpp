@@ -16,9 +16,9 @@ void Add(List* list, int value)
 	Node* node = new Node();
 
 	node->Value = value;
-	list->Length += 1;
+	list->Length++;
 	node->Previos = list->Tail;
-	node->Next = nullptr; // можно ли сразу инициализировать в структуре?
+	node->Next = nullptr;
 
 	if (list->Tail != nullptr) 
 	{
@@ -65,14 +65,58 @@ void Remove(List* list, int index)
 		node->Next->Previos = node->Previos;
 	}
 
-	
-
+	list->Length--;
 	delete node;
 }
 
-void Show(List* list)
+void InsertInBegin(List* list, int value)
 {
-	int count = 0;
+	Node* node = new Node();
+
+	node->Value = value;
+	node->Previos = nullptr;
+	node->Next = list->Head;
+
+	if (list->Head != nullptr)
+	{
+		list->Head->Previos = node;
+	}
+	list->Length++;
+	list->Head = node;
+}
+
+void InsertAfter(List* list, int index, int value)
+{
+	if (list->Head == nullptr || list->Length - 1 < index)
+	{
+		cout << "dsfjk";
+		return;
+	}
+
+	Node* node = new Node();
+	Node* indexNode = list->Head;
+
+	node->Value = value;
+
+	for (int i = 0; i != index; i++)
+	{
+		indexNode = indexNode->Next;
+	}
+
+	node->Next = indexNode->Next;
+	node->Previos = indexNode;
+	indexNode->Next = node;
+
+	if (list->Length - 1 != index)
+	{
+		indexNode->Next->Previos = node;
+	}
+
+	list->Length++;
+}
+
+void Show(List* list)
+{	
 	Node* node = list->Head;
 
 	cout << "Двусвязный список: " << endl;
@@ -81,7 +125,6 @@ void Show(List* list)
 	{
 		cout << node->Value << " ";
 
-		count++;
 		node = node->Next;
 	}
 

@@ -1,16 +1,18 @@
 #include <iostream>
 #include "Actions.h"
+
 using namespace std;
 
-bool isSort;
 
 void CreatDynamicArray(DynamicArray* dynamicArray)
 {
 	InitDynamicArray(dynamicArray);
 
 	cout << "Создание массива: " << endl;
+
 	char mode = 'n';
 	int size = 4;
+
 	cout << "Заполнить массив автоматические рандомными числами? (y/n): ";
 	cin >> mode;
 
@@ -22,8 +24,6 @@ void CreatDynamicArray(DynamicArray* dynamicArray)
 		InitRandomElements(dynamicArray, size);
 		cout << "Динамический массив создан" << endl;
 	}
-
-	isSort = false;
 }
 
 void AddElement(DynamicArray* dynamicArray)
@@ -34,7 +34,7 @@ void AddElement(DynamicArray* dynamicArray)
 	cin >> element;
 
 	Add(dynamicArray, element);
-	PrintArray(dynamicArray);
+	ShowArray(dynamicArray);
 }
 
 void RemoveElement(DynamicArray* dynamicArray)
@@ -45,7 +45,7 @@ void RemoveElement(DynamicArray* dynamicArray)
 	cin >> index;
 
 	RemoveAt(dynamicArray, index);
-	PrintArray(dynamicArray);
+	ShowArray(dynamicArray);
 }
 
 void InsertElement(DynamicArray* dynamicArray)
@@ -58,17 +58,19 @@ void InsertElement(DynamicArray* dynamicArray)
 	cout << "Введите индекс для вставляемого элемента: ";
 	cin >> index;
 
-	Insert(dynamicArray, element, index);
-	PrintArray(dynamicArray);
+	if (Insert(dynamicArray, element, index) == -1)
+	{
+		cout << "Индекс выходит за границы массива." << endl;
+	}
+
+	ShowArray(dynamicArray);
 }
 
 void SortArray(DynamicArray* dynamicArray)
 {
 	cout << "Отсортированный массив: ";
 	Sort(dynamicArray);
-	PrintArray(dynamicArray);
-
-	isSort = true;
+	ShowArray(dynamicArray);
 }
 
 void LinearSearchElement(DynamicArray* dynamicArray)
@@ -81,13 +83,19 @@ void LinearSearchElement(DynamicArray* dynamicArray)
 
 	indexOfFoundElement = LinearSearch(dynamicArray, element);
 
+	if (indexOfFoundElement == -1)
+	{
+		cout << "В массиве не найден элемент: " << element;
+		return;
+	}
+
 	cout << "Искомое значение: " << element <<
 		" находится под индексом: " << indexOfFoundElement << endl;
 }
 
 void BinarySearchElement(DynamicArray* dynamicArray)
 {
-	if (!isSort)
+	if (!dynamicArray->IsSorted)
 	{
 		cout << "Для бинарного поиска необходимо отсортировать массив" << endl;
 		return;
@@ -101,13 +109,25 @@ void BinarySearchElement(DynamicArray* dynamicArray)
 
 	indexOfFoundElement = BinarySearch(dynamicArray, element);
 
+	if (indexOfFoundElement == -1)
+	{
+		cout << "В массиве не найден элемент: " << element;
+		return;
+	}
+
 	cout << "Искомое значение: " << element <<
 		" находится под индексом:  " << indexOfFoundElement << endl;
 }
 
 void RecreatDynamicArray(DynamicArray* dynamicArray)
 {
-	delete[] dynamicArray->array;
+	delete[] dynamicArray->Array;
 
 	CreatDynamicArray(dynamicArray);
+}
+
+void ShowArray(DynamicArray* dynamicArray)
+{
+	cout << "Массив: ";
+	PrintArray(dynamicArray);
 }

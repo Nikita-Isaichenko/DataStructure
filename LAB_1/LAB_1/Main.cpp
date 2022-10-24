@@ -6,12 +6,13 @@ void PrintText();
 
 using namespace std;
 
+
 int main()
 {    
     setlocale(LC_ALL, "ru");
 
     DynamicArray* array = new DynamicArray;
-    int number;
+    
 
     CreatDynamicArray(array);
     PrintText();
@@ -21,15 +22,14 @@ int main()
         cout << "\n--------------------------------------------" << endl;
         cout << "                                           |" << endl;
         cout << "Введите номер действия: ";
+        int number;
         cin >> number;
 
         switch (number)
         {
         case 0:
-            delete[] array->array;
-            delete array;
-            return -1;
-            break;
+            DeleteArray(array);
+            return 0;
         case 1:
             system("cls");
             PrintText();
@@ -56,7 +56,7 @@ int main()
             RecreatDynamicArray(array);
             break;
         case 9:
-            PrintArray(array);
+            ShowArray(array);
             break;
         default:
             cout << "Некорректный номер действия!";
@@ -64,6 +64,7 @@ int main()
         cout << "                                           |" << endl;
         cout << "--------------------------------------------\n" << endl;
     }
+
 }
 
 void PrintText()
