@@ -4,32 +4,19 @@
 
 using namespace std;
 
-/**
- * Инициалирует динамический массив.
- * 
- * \param array
- */
-void InitDynamicArray(DynamicArray* array)
-{
-	int capacity = 8;
+const int capacity = 8;
 
+void InitDynamicArray(DynamicArray* array)
+{	
 	array->Capacity = capacity;
 	array->Size = 0;
 	array->Array = new int[array->Capacity];
 	array->IsSorted = false;
 }
 
-/**
- * Увеличивает размер буффера динамического массива
- * при достижении заполнении прежнего.
- * 
- * \param array
- */
-void ResizeDynamicArray(DynamicArray* array)
-{
-	//TODO: const?
-	//TODO: уменьшение размера массива
-	array->Capacity += array->Capacity * 1.5;
+void ResizeUpDynamicArray(DynamicArray* array)
+{	
+	array->Capacity = array->Capacity * array->Growth;
 
 	int* tempArray = new int[array->Capacity];
 
@@ -43,17 +30,28 @@ void ResizeDynamicArray(DynamicArray* array)
 	array->Array = tempArray;
 }
 
-/**
- * .
- * 
- * \param array
- * \param element
- */
+void ResizeDownDynamicArray(DynamicArray* array)
+{
+	array->Capacity = array->Capacity / array->Growth;
+
+	int* tempArray = new int[array->Capacity];
+
+	for (int i = 0; i < array->Size; i++)
+	{
+		tempArray[i] = array->Array[i];
+	}
+
+	delete[] array->Array;
+
+	array->Array = tempArray;
+	cout << "test";
+}
+
 void Add(DynamicArray* array, int element) 
 {
 	if (array->Size >= array->Capacity) 
 	{		
-		ResizeDynamicArray(array);
+		ResizeUpDynamicArray(array);
 	}
 
 	array->Size++;
@@ -63,7 +61,7 @@ void Add(DynamicArray* array, int element)
 
 void RemoveAt(DynamicArray* array, int index) 
 {
-	if (CheckIndexOutRange(array, index)) return;		
+	if (CheckIndexOutRange(array, index)) return;	
 
 	for (int i = index; i < array->Size - 1; i++)
 	{
@@ -72,6 +70,11 @@ void RemoveAt(DynamicArray* array, int index)
 
 	array->Size--;
 	array->IsSorted = false;
+
+	if (array->Size == array->Capacity / 2 && array->Capacity > capacity) 
+	{
+		ResizeDownDynamicArray(array);
+	}
 }
 
 int Insert(DynamicArray* array, int element, int index) 
@@ -83,7 +86,7 @@ int Insert(DynamicArray* array, int element, int index)
 
 	if (array->Size >= array->Capacity) 
 	{
-		ResizeDynamicArray(array);
+		ResizeUpDynamicArray(array);
 	}
 
 	for (int i = 0; i < array->Size - index; i++)
@@ -163,6 +166,7 @@ void PrintArray(DynamicArray* array)
 	}
 
 	cout << endl;
+	cout << array->Capacity;
 }
 
 void InitRandomElements(DynamicArray* array, int size)

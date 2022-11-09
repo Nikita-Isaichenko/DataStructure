@@ -12,7 +12,6 @@ int main()
     setlocale(LC_ALL, "ru");
 
     DynamicArray* array = new DynamicArray;
-    
 
     CreatDynamicArray(array);
     PrintText();

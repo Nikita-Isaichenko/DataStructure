@@ -2,6 +2,7 @@
 
 struct DynamicArray
 {
+	const double Growth = 1.5;
 	bool IsSorted;
 	int* Array;
 	int Size;
