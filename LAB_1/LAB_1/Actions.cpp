@@ -3,6 +3,33 @@
 
 using namespace std;
 
+int CheckingForDigit(const char* text)
+{
+	char* arrChar = new char[256] {};
+	int element;
+
+	while (true)
+	{
+		cout << text << endl;
+		cin >> arrChar;
+
+		if (arrChar == "0")
+		{
+			return 0;
+		}
+
+		element = std::atoi(arrChar);
+
+		if (element != 0)
+		{
+			return element;
+		}
+		else
+		{
+			cout << "Некорректный ввод! Введите число." << endl;
+		}
+	}
+}
 
 void CreatDynamicArray(DynamicArray* dynamicArray)
 {
@@ -13,25 +40,35 @@ void CreatDynamicArray(DynamicArray* dynamicArray)
 	char mode = 'n';
 	int size = 4;
 
-	cout << "Заполнить массив автоматические рандомными числами? (y/n): ";
-	cin >> mode;
-
-	if (mode == 'y')
+	while (true) 
 	{
-		cout << "Укажите размер массива: ";
-		cin >> size;
+		cout << "Заполнить массив автоматические рандомными числами? (y/n): ";
+		cin >> mode;
 
-		InitRandomElements(dynamicArray, size);
-		cout << "Динамический массив создан" << endl;
+		if (mode == 'y' || mode == 'n')
+		{
+			if (mode == 'y')
+			{
+				cout << "Укажите размер массива: ";
+				cin >> size;
+
+				InitRandomElements(dynamicArray, size);
+				cout << "Динамический массив создан" << endl;				
+			}
+
+			break;
+		}
+		else
+		{
+			cout << "Некорректный ответ!" << endl;
+		}
 	}
 }
 
 void AddElement(DynamicArray* dynamicArray)
 {
-	int element = 0;
-
-	cout << "Введите числовое значение элемента для добавления в массив: ";
-	cin >> element;
+	int element = CheckingForDigit(
+		"Введите числовое значение элемента для добавления в массив: ");		
 
 	Add(dynamicArray, element);
 	ShowArray(dynamicArray);
@@ -39,10 +76,7 @@ void AddElement(DynamicArray* dynamicArray)
 
 void RemoveElement(DynamicArray* dynamicArray)
 {
-	int index;
-
-	cout << "Введите индекс удаляемого элемента: ";
-	cin >> index;
+	int index = CheckingForDigit("Введите индекс удаляемого элемента: ");
 
 	RemoveAt(dynamicArray, index);
 	ShowArray(dynamicArray);
@@ -50,13 +84,10 @@ void RemoveElement(DynamicArray* dynamicArray)
 
 void InsertElement(DynamicArray* dynamicArray)
 {
-	int element;
-	int index;
+	int element
+		= CheckingForDigit("Введите числовое значение, которое необходимо вставить: ");
 
-	cout << "Введите числовое значение, которое необходимо вставить: ";
-	cin >> element;
-	cout << "Введите индекс для вставляемого элемента: ";
-	cin >> index;
+	int index = CheckingForDigit("Введите индекс для вставляемого элемента: ");
 
 	if (Insert(dynamicArray, element, index) == -1)
 	{
@@ -75,11 +106,8 @@ void SortArray(DynamicArray* dynamicArray)
 
 void LinearSearchElement(DynamicArray* dynamicArray)
 {
-	int element;
+	int element = CheckingForDigit("Введите искомое значение: ");
 	int indexOfFoundElement;
-
-	cout << "Введите искомое значение: ";
-	cin >> element;
 
 	indexOfFoundElement = LinearSearch(dynamicArray, element);
 
@@ -101,11 +129,8 @@ void BinarySearchElement(DynamicArray* dynamicArray)
 		return;
 	}
 
-	int element;
+	int element = CheckingForDigit("Введите искомый элемент: ");
 	int indexOfFoundElement;
-
-	cout << "Введите искомый элемент: ";
-	cin >> element;
 
 	indexOfFoundElement = BinarySearch(dynamicArray, element);
 

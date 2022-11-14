@@ -25,6 +25,17 @@ struct DynamicArray
 void InitDynamicArray(DynamicArray* array);
 
 /**
+ * Увеличивает размер буфера для массива при заполнении старого буфера.
+ */
+void ResizeUpDynamicArray(DynamicArray* array);
+
+/**
+ * Уменьшает размер буфера для массива, если разница
+ * между кол-вом элементов и размером буфера достигает опреленного значения.
+ */
+void ResizeDownDynamicArray(DynamicArray* array);
+
+/**
  * Добавляет элемент в конец динамического массива.
  */
 void Add(DynamicArray* array, int element);
