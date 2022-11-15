@@ -5,7 +5,6 @@
  * \author nikit
  * \date   November 2022
  *********************************************************************/
-
 #pragma once
 #include "DynamicArray.h"
 
@@ -53,6 +52,12 @@ void RecreatDynamicArray(DynamicArray* dynamicArray);
  * Выводит динамический массив.
  */
 void ShowArray(DynamicArray* dynamicArray);
+
+/**
+ * Проверяет вводимые данные на тип int.
+ */
+int CheckingForDigit(const char* text);
+
 
 
 
