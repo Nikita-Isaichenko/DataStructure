@@ -21,6 +21,8 @@ int main()
         cout << "\n--------------------------------------------" << endl;
         cout << "                                           |" << endl;
 
+        
+
         int number = CheckingForDigit("Введите номер действия: ");
 
         switch (number)

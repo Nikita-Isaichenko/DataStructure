@@ -1,6 +1,6 @@
 #include "DynamicArray.h"
-#include <iostream>
 #include <time.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -14,10 +14,24 @@ void InitDynamicArray(DynamicArray* array)
 	array->IsSorted = false;
 }
 
-void ResizeUpDynamicArray(DynamicArray* array)
-{	
-	array->Capacity = array->Capacity * array->Growth;
+void CheckResizeDynamicArray(DynamicArray* array)
+{
+	if (array->Size >= array->Capacity)
+	{
+		array->Capacity = array->Capacity * array->Growth;
+		ResizeDynamicArray(array);
+	}
 
+	if (array->Size == array->Capacity / array->Growth
+		&& array->Capacity > capacity)
+	{
+		array->Capacity = array->Capacity / array->Growth;
+		ResizeDynamicArray(array);
+	}
+}
+
+void ResizeDynamicArray(DynamicArray* array)
+{	
 	int* tempArray = new int[array->Capacity];
 
 	for (int i = 0; i < array->Size; i++) 
@@ -30,31 +44,12 @@ void ResizeUpDynamicArray(DynamicArray* array)
 	array->Array = tempArray;
 }
 
-void ResizeDownDynamicArray(DynamicArray* array)
-{
-	array->Capacity = array->Capacity / array->Growth;
-
-	int* tempArray = new int[array->Capacity];
-
-	for (int i = 0; i < array->Size; i++)
-	{
-		tempArray[i] = array->Array[i];
-	}
-
-	delete[] array->Array;
-
-	array->Array = tempArray;
-	cout << "test";
-}
-
 void Add(DynamicArray* array, int element) 
 {
-	if (array->Size >= array->Capacity) 
-	{		
-		ResizeUpDynamicArray(array);
-	}
-
 	array->Size++;
+
+	CheckResizeDynamicArray(array);
+
 	array->Array[array->Size - 1] = element;
 	array->IsSorted = false;
 }
@@ -71,10 +66,7 @@ void RemoveAt(DynamicArray* array, int index)
 	array->Size--;
 	array->IsSorted = false;
 
-	if (array->Size == array->Capacity / 2 && array->Capacity > capacity) 
-	{
-		ResizeDownDynamicArray(array);
-	}
+	CheckResizeDynamicArray(array);
 }
 
 int Insert(DynamicArray* array, int element, int index) 
@@ -84,18 +76,18 @@ int Insert(DynamicArray* array, int element, int index)
 		return -1;
 	}
 
-	if (array->Size >= array->Capacity) 
-	{
-		ResizeUpDynamicArray(array);
-	}
+
 
 	for (int i = 0; i < array->Size - index; i++)
 	{
 		array->Array[array->Size - i] = array->Array[array->Size - i - 1];
 	}
 
-	array->Array[index] = element;
 	array->Size++;
+
+	CheckResizeDynamicArray(array);
+
+	array->Array[index] = element;
 	array->IsSorted = false;
 	return 0;
 }
@@ -108,7 +100,9 @@ void Sort(DynamicArray* array)
 		{
 			if (array->Array[j] < array->Array[i])
 			{
-				swap(array->Array[j], array->Array[i]);
+				int temp = array->Array[i];
+				array->Array[i] = array->Array[j];
+				array->Array[j] = temp;
 			}
 		}
 	}
@@ -156,16 +150,6 @@ int BinarySearch(DynamicArray* array, int element)
 	}
 
 	return searchIndex;
-}
-
-void PrintArray(DynamicArray* array)
-{
-	for (int i = 0; i < array->Size; i++)
-	{
-		cout << array->Array[i] << " ";
-	}
-
-	cout << endl;
 }
 
 void InitRandomElements(DynamicArray* array, int size)

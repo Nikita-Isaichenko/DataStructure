@@ -106,9 +106,7 @@ void SortArray(DynamicArray* dynamicArray)
 void LinearSearchElement(DynamicArray* dynamicArray)
 {
 	int element = CheckingForDigit("Введите искомое значение: ");
-	int indexOfFoundElement;
-
-	indexOfFoundElement = LinearSearch(dynamicArray, element);
+	int indexOfFoundElement = LinearSearch(dynamicArray, element);
 
 	if (indexOfFoundElement == -1)
 	{
@@ -129,9 +127,7 @@ void BinarySearchElement(DynamicArray* dynamicArray)
 	}
 
 	int element = CheckingForDigit("Введите искомый элемент: ");
-	int indexOfFoundElement;
-
-	indexOfFoundElement = BinarySearch(dynamicArray, element);
+	int indexOfFoundElement = BinarySearch(dynamicArray, element);
 
 	if (indexOfFoundElement == -1)
 	{
@@ -153,5 +149,13 @@ void RecreatDynamicArray(DynamicArray* dynamicArray)
 void ShowArray(DynamicArray* dynamicArray)
 {
 	cout << "Массив: ";
-	PrintArray(dynamicArray);
+
+	for (int i = 0; i < dynamicArray->Size; i++)
+	{
+		cout << dynamicArray->Array[i] << " ";
+	}
+
+	cout << endl;
+	cout<< dynamicArray->Size<< endl;
+	cout << dynamicArray->Capacity << endl;
 }

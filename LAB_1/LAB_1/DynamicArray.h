@@ -25,15 +25,14 @@ struct DynamicArray
 void InitDynamicArray(DynamicArray* array);
 
 /**
- * Увеличивает размер буфера для массива при заполнении старого буфера.
+ * Увеличивает или уменьшает размер буфера для массива.
  */
-void ResizeUpDynamicArray(DynamicArray* array);
+void ResizeDynamicArray(DynamicArray* array);
 
 /**
- * Уменьшает размер буфера для массива, если разница
- * между кол-вом элементов и размером буфера достигает опреленного значения.
+ * Проверяет надо ли изменить размер массива.
  */
-void ResizeDownDynamicArray(DynamicArray* array);
+void CheckResizeDynamicArray(DynamicArray* array);
 
 /**
  * Добавляет элемент в конец динамического массива.
@@ -54,11 +53,6 @@ int Insert(DynamicArray* array, int  element, int index);
  * Сортирует динамический массив.
  */
 void Sort(DynamicArray* array);
-
-/**
- * Выводит динамический массив.
- */
-void PrintArray(DynamicArray* array);
 
 /**
  * Инициализирует динамический массив заданным кол-вом случайных элементов.
