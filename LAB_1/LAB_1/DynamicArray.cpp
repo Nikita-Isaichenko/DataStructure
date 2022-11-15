@@ -166,7 +166,6 @@ void PrintArray(DynamicArray* array)
 	}
 
 	cout << endl;
-	cout << array->Capacity;
 }
 
 void InitRandomElements(DynamicArray* array, int size)

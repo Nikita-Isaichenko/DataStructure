@@ -10,7 +10,7 @@ int CheckingForDigit(const char* text)
 
 	while (true)
 	{
-		cout << text << endl;
+		cout << text;
 		cin >> arrChar;
 
 		if (arrChar == "0")
@@ -49,8 +49,7 @@ void CreatDynamicArray(DynamicArray* dynamicArray)
 		{
 			if (mode == 'y')
 			{
-				cout << "”кажите размер массива: ";
-				cin >> size;
+				size = CheckingForDigit("¬ведите размер массива: ");
 
 				InitRandomElements(dynamicArray, size);
 				cout << "ƒинамический массив создан" << endl;				

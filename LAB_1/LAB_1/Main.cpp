@@ -20,9 +20,8 @@ int main()
     {    
         cout << "\n--------------------------------------------" << endl;
         cout << "                                           |" << endl;
-        cout << "Введите номер действия: ";
-        int number;
-        cin >> number;
+
+        int number = CheckingForDigit("Введите номер действия: ");
 
         switch (number)
         {
