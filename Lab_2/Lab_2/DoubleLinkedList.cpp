@@ -125,3 +125,39 @@ void InsertAfter(List* list, int index, int value)
 
 	list->Length++;
 }
+
+void InsertBefore(List* list, int index, int value)
+{
+	if (list->Head == nullptr || list->Length - 1 < index)
+	{
+		return;
+	}
+
+	Node* node = new Node();
+	Node* indexNode = list->Head;
+
+	node->Value = value;
+
+	for (int i = 0; i != index; i++)
+	{
+		indexNode = indexNode->Next;
+	}
+
+	node->Next = indexNode;
+	node->Previos = indexNode->Previos;
+
+	if (indexNode->Previos != nullptr)
+	{
+		indexNode->Previos->Next = node;
+	}
+
+	indexNode->Previos = node;
+
+	if (index == 0)
+	{
+		list->Head = node;
+	}
+
+	list->Length++;
+}
+

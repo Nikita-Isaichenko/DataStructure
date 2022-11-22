@@ -52,6 +52,20 @@ void InsertElementAfter(List* linkedList)
 	Show(linkedList);
 }
 
+void InsertElementBefore(List* linkedList) 
+{
+	int value;
+	int index;
+
+	cout << "¬ведите значение добавл€емого элемента: ";
+	cin >> value;
+
+	cout << "¬ведите индекс, перед которым надо добавить элемент: ";
+	cin >> index;
+
+	InsertBefore(linkedList, index, value);
+}
+
 void Show(List* list)
 {
 	Node* node = list->Head;
