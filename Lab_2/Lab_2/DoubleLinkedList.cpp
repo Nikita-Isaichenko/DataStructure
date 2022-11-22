@@ -1,5 +1,5 @@
-#include <iostream>
 #include "DoubleLinkedList.h"
+#include <iostream>
 
 using namespace std;
 
@@ -81,6 +81,12 @@ void InsertInBegin(List* list, int value)
 	{
 		list->Head->Previos = node;
 	}
+
+	if (list->Tail == nullptr)
+	{
+		list->Tail = node;
+	}
+
 	list->Length++;
 	list->Head = node;
 }
@@ -88,8 +94,7 @@ void InsertInBegin(List* list, int value)
 void InsertAfter(List* list, int index, int value)
 {
 	if (list->Head == nullptr || list->Length - 1 < index)
-	{
-		cout << "dsfjk";
+	{		
 		return;
 	}
 
@@ -105,28 +110,18 @@ void InsertAfter(List* list, int index, int value)
 
 	node->Next = indexNode->Next;
 	node->Previos = indexNode;
-	indexNode->Next = node;
 
 	if (list->Length - 1 != index)
 	{
 		indexNode->Next->Previos = node;
 	}
+	
+	indexNode->Next = node;
 
-	list->Length++;
-}
-
-void Show(List* list)
-{	
-	Node* node = list->Head;
-
-	cout << "Двусвязный список: " << endl;
-
-	while (node != nullptr)
+	if (list->Length - 1 == index)
 	{
-		cout << node->Value << " ";
-
-		node = node->Next;
+		list->Tail = node;
 	}
 
-	cout << endl;
+	list->Length++;
 }

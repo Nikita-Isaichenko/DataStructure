@@ -51,3 +51,19 @@ void InsertElementAfter(List* linkedList)
 	InsertAfter(linkedList, index, value);
 	Show(linkedList);
 }
+
+void Show(List* list)
+{
+	Node* node = list->Head;
+
+	cout << "Двусвязный список: " << endl;
+
+	while (node != nullptr)
+	{
+		cout << node->Value << " ";
+
+		node = node->Next;
+	}
+
+	cout << endl;
+}
