@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 void InitList(List* list) 
 {
 	list->Length = 0;
@@ -192,19 +191,28 @@ void InsertionSort(List* list)
 
 	for (Node* iNode = list->Head->Next; iNode != nullptr; iNode = iNode->Next) 
 	{
-		/*for (Node* jNode = iNode->Next; jNode != nullptr; jNode = jNode->Next)
-		{
-			
-		}*/
-
 		Node* jNode = iNode->Previos;		
 		
 		while (jNode != nullptr && jNode->Value > jNode->Next->Value)
 		{
 			SwapElements(list, jNode, jNode->Next);
 			jNode = jNode->Previos->Previos;
-		}
-		
+		}	
 	}
+}
+
+int LinearSearch(List* list, int element) 
+{
+	int index = 0;
+
+	for (Node* iNode = list->Head; iNode != nullptr; iNode = iNode->Next, index++) 
+	{
+		if (iNode->Value == element) 
+		{
+			return index;
+		}
+	}
+
+	return -1;
 }
 

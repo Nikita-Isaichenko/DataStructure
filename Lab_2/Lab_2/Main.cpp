@@ -11,7 +11,6 @@ int main()
 {
 	setlocale(LC_ALL, "");
 
-    int number;
 	List* list = new List();
 
     InitList(list);
@@ -21,8 +20,8 @@ int main()
     {
         cout << "\n--------------------------------------------" << endl;
         cout << "                                           |" << endl;
-        cout << "Введите номер действия: ";
-        cin >> number;
+
+        int number = CheckingForDigit("Введите номер действия: ");
 
         switch (number)
         {
@@ -52,7 +51,7 @@ int main()
             SortList(list);
             break;
         case 8:
-
+            LinearSearchElement(list);
             break;
         case 9:
             Show(list);
@@ -72,7 +71,7 @@ void PrintText()
         "2. Добавить значение в массив.\n3. Удалить значение из массива.\n"
         "4. Вставить элемент в начало.\n5. Вставить элемент после индекса.\n"
         "6. Вставить элемент перед индексом.\n7.Сортировка.\n"
-        "8. Пересоздать массив.\n9. Вывести массив\n" << endl;
+        "8. Поиск элемента.\n9. Вывести массив\n" << endl;
     cout << endl;
 }
 

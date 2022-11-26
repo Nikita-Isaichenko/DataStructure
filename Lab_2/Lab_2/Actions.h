@@ -8,3 +8,5 @@ void InsertElementAfter(List* linkedList);
 void InsertElementBefore(List* linkedList);
 void Show(List* linkedList);
 void SortList(List* linkedList);
+void LinearSearchElement(List* list);
+int CheckingForDigit(const char* text);
