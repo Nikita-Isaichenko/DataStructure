@@ -64,6 +64,13 @@ void InsertElementBefore(List* linkedList)
 	cin >> index;
 
 	InsertBefore(linkedList, index, value);
+	Show(linkedList);
+}
+
+void SortList(List* list)
+{
+	InsertionSort(list);
+	Show(list);
 }
 
 void Show(List* list)

@@ -161,3 +161,50 @@ void InsertBefore(List* list, int index, int value)
 	list->Length++;
 }
 
+void SwapElements(List* list, Node* first, Node* second)
+{
+	if (first == list->Head)
+	{
+		list->Head = second;
+	}
+	else
+	{
+		first->Previos->Next = second;
+	}
+
+	if (second == list->Tail)
+	{
+		list->Tail = first;
+	}
+	else
+	{
+		second->Next->Previos = first;
+	}
+
+	first->Next = second->Next;
+	second->Previos = first->Previos;
+	first->Previos = second;
+	second->Next = first;
+}
+
+void InsertionSort(List* list)
+{
+
+	for (Node* iNode = list->Head->Next; iNode != nullptr; iNode = iNode->Next) 
+	{
+		/*for (Node* jNode = iNode->Next; jNode != nullptr; jNode = jNode->Next)
+		{
+			
+		}*/
+
+		Node* jNode = iNode->Previos;		
+		
+		while (jNode != nullptr && jNode->Value > jNode->Next->Value)
+		{
+			SwapElements(list, jNode, jNode->Next);
+			jNode = jNode->Previos->Previos;
+		}
+		
+	}
+}
+

@@ -76,8 +76,6 @@ int Insert(DynamicArray* array, int element, int index)
 		return -1;
 	}
 
-
-
 	for (int i = 0; i < array->Size - index; i++)
 	{
 		array->Array[array->Size - i] = array->Array[array->Size - i - 1];

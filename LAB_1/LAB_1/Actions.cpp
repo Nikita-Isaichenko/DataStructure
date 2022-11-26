@@ -5,29 +5,18 @@ using namespace std;
 
 int CheckingForDigit(const char* text)
 {
-	char* arrChar = new char[256] {};
 	int element;
 
 	while (true)
 	{
 		cout << text;
-		cin >> arrChar;
+		cin >> element;
 
-		if (arrChar == "0")
-		{
-			return 0;
-		}
+		if (!cin.fail()) return element;
 
-		element = std::atoi(arrChar);
-
-		if (element != 0)
-		{
-			return element;
-		}
-		else
-		{
-			cout << "Некорректный ввод! Введите число." << endl;
-		}
+		cin.clear();
+		cin.ignore(32767, '\n');
+		cout << "Некорректный ввод!";
 	}
 }
 
