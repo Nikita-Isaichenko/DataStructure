@@ -1,5 +1,4 @@
 #include "DoubleLinkedList.h"
-#include <iostream>
 
 using namespace std;
 
@@ -39,12 +38,7 @@ void Remove(List* list, int index)
 		return;
 	}
 
-	Node* node = list->Head;
-
-	for (int i = 0; i != index; i++)
-	{
-		node = node->Next;
-	}
+	Node* node = GetElement(list, index);
 
 	if (node == list->Head)
 	{
@@ -98,14 +92,9 @@ void InsertAfter(List* list, int index, int value)
 	}
 
 	Node* node = new Node();
-	Node* indexNode = list->Head;
+	Node* indexNode = GetElement(list, index);
 
 	node->Value = value;
-
-	for (int i = 0; i != index; i++)
-	{
-		indexNode = indexNode->Next;
-	}
 
 	node->Next = indexNode->Next;
 	node->Previos = indexNode;
@@ -133,14 +122,9 @@ void InsertBefore(List* list, int index, int value)
 	}
 
 	Node* node = new Node();
-	Node* indexNode = list->Head;
+	Node* indexNode = GetElement(list, index);
 
 	node->Value = value;
-
-	for (int i = 0; i != index; i++)
-	{
-		indexNode = indexNode->Next;
-	}
 
 	node->Next = indexNode;
 	node->Previos = indexNode->Previos;
@@ -214,5 +198,34 @@ int LinearSearch(List* list, int element)
 	}
 
 	return -1;
+}
+
+Node* GetElement(List* list, int index) 
+{
+
+	Node* node;
+
+	if (index < list->Length / 2)
+	{
+		node = list->Head;
+
+		for (int i = 0; i < index; ++i)
+		{
+			node = node->Next;
+		}
+
+		return node;
+	}
+	else
+	{
+		node = list->Tail;
+
+		for (int i = list->Length - 1; i > index; i--)
+		{
+			node = node->Previos;
+		}
+
+		return node;
+	}
 }
 

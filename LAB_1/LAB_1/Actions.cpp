@@ -5,19 +5,35 @@ using namespace std;
 
 int CheckingForDigit(const char* text)
 {
-	int element;
+	if (text != "")
+	{
+		cout << text << endl;
+	}
+
+	int value;
 
 	while (true)
 	{
-		cout << text;
-		cin >> element;
+		cin >> value;
+		if (cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(32767, '\n');
+			cout << "Произошла ошибка. Попробуйте снова" << endl;
+			continue;
+		}
 
-		if (!cin.fail()) return element;
+		std::cin.ignore(32767, '\n');
+		if (std::cin.gcount() > 1)
+		{
+			cout << "Произошла ошибка. Попробуйте снова" << endl;
+			continue;
+		}
 
-		cin.clear();
-		cin.ignore(32767, '\n');
-		cout << "Некорректный ввод!";
+		break;
 	}
+
+	return value;
 }
 
 void CreatDynamicArray(DynamicArray* dynamicArray)
@@ -49,6 +65,8 @@ void CreatDynamicArray(DynamicArray* dynamicArray)
 		else
 		{
 			cout << "Некорректный ответ!" << endl;
+			cin.clear();
+			cin.ignore(32767, '\n');
 		}
 	}
 }

@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClInclude Include="Actions.h" />
     <ClInclude Include="DoubleLinkedList.h" />
-    <ClInclude Include="Main.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actions.cpp" />

@@ -1,24 +1,41 @@
 #include <iostream>
 #include "Actions.h"
 #include "DoubleLinkedList.h"
+#include <chrono>
 
 using namespace std;
 
 int CheckingForDigit(const char* text)
 {
-	int element;
+	if (text != "")
+	{
+		cout << text << endl;
+	}
 
+	int value;
 	while (true)
 	{
-		cout << text;
-		cin >> element;
+		cin >> value;
+		if (cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			cout << "Произошла ошибка. Попробуйте снова" << endl;
+			continue;
+		}
 
-		if (!cin.fail()) return element;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		if (std::cin.gcount() > 1)
+		{
+			cout << "Произошла ошибка. Попробуйте снова" << endl;
+			continue;
+		}
 
-		cin.clear();
-		cin.ignore(32767, '\n');
-		cout << "Некорректный ввод!" << endl;
+		break;
 	}
+
+	return value;
+	
 }
 
 void AddElement(List* linkedList)
@@ -82,20 +99,75 @@ void Show(List* list)
 		node = node->Next;
 	}
 
-	cout << endl;
+	cout << endl << "Length: " << list->Length << endl;
+
 }
 
 void LinearSearchElement(List* list)
 {
 	int value = CheckingForDigit("Введите значение искомого элемента: ");
 
-	if (value != -1)
+	int desiredIndex = LinearSearch(list, value);
+	if (desiredIndex != -1)
 	{
 		cout << "Искомый элемент находится под индексом: "
-			<< LinearSearch(list, value) << endl;
+			<< desiredIndex << endl;
 	}
 	else 
 	{
 		cout << "Искомого элемента в списке нет" << endl;
+	}
+}
+
+void RemoveList(List* list)
+{
+	if (list->Head == nullptr)
+	{
+		return;
+	}
+
+	int index = 0;
+	Node* temp = list->Head->Next;
+
+	while (temp != nullptr)
+	{
+		delete temp->Previos;
+		list->Length--;
+		temp = temp->Next;
+	}
+
+	delete temp;
+	list->Length--;
+	list->Head = nullptr;
+	list->Tail = nullptr;
+}
+
+void RandomValues(List* list, int count)
+{
+	srand(time(nullptr));
+
+	for (int i = 0; i < count; i++)
+	{
+		Add(list, rand() % 100);
+	}
+}
+
+void TestOperations() 
+{
+	List* list = new List();
+
+	for (int step = 10000; step <= 1000000; step += 10000)
+	{
+		RemoveList(list);
+		int testValue = 10;
+		RandomValues(list, step);
+		auto start = chrono::steady_clock::now();
+		InsertBefore(list, list->Length/2, testValue);
+		//InsertInBegin(list, testValue);
+		//Remove(list, list->Length / 2);
+		auto end = chrono::steady_clock::now();
+
+		cout << chrono::duration_cast<std::chrono::microseconds>(end - start).count()
+			<< ", " << step << endl;
 	}
 }
