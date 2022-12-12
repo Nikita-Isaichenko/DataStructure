@@ -2,14 +2,14 @@
 
 using namespace std;
 
-void InitList(List* list) 
+void InitList(DoubleLinkedList* list) 
 {
 	list->Length = 0;
 	list->Head = nullptr;
 	list->Tail = nullptr;
 }
 
-void Add(List* list, int value) 
+void Add(DoubleLinkedList* list, int value) 
 {
 	Node* node = new Node();
 
@@ -31,7 +31,7 @@ void Add(List* list, int value)
 	list->Tail = node;
 }
 
-void Remove(List* list, int index) 
+void Remove(DoubleLinkedList* list, int index) 
 {
 	if (list->Head == nullptr || list->Length - 1 < index)
 	{
@@ -62,7 +62,7 @@ void Remove(List* list, int index)
 	delete node;
 }
 
-void InsertInBegin(List* list, int value)
+void InsertInBegin(DoubleLinkedList* list, int value)
 {
 	Node* node = new Node();
 
@@ -84,7 +84,7 @@ void InsertInBegin(List* list, int value)
 	list->Head = node;
 }
 
-void InsertAfter(List* list, int index, int value)
+void InsertAfter(DoubleLinkedList* list, int index, int value)
 {
 	if (list->Head == nullptr || list->Length - 1 < index)
 	{		
@@ -114,7 +114,7 @@ void InsertAfter(List* list, int index, int value)
 	list->Length++;
 }
 
-void InsertBefore(List* list, int index, int value)
+void InsertBefore(DoubleLinkedList* list, int index, int value)
 {
 	if (list->Head == nullptr || list->Length - 1 < index)
 	{
@@ -144,7 +144,7 @@ void InsertBefore(List* list, int index, int value)
 	list->Length++;
 }
 
-void SwapElements(List* list, Node* first, Node* second)
+void SwapElements(DoubleLinkedList* list, Node* first, Node* second)
 {
 	if (first == list->Head)
 	{
@@ -170,7 +170,7 @@ void SwapElements(List* list, Node* first, Node* second)
 	second->Next = first;
 }
 
-void InsertionSort(List* list)
+void InsertionSort(DoubleLinkedList* list)
 {
 
 	for (Node* iNode = list->Head->Next; iNode != nullptr; iNode = iNode->Next) 
@@ -185,7 +185,7 @@ void InsertionSort(List* list)
 	}
 }
 
-int LinearSearch(List* list, int element) 
+int LinearSearch(DoubleLinkedList* list, int element) 
 {
 	int index = 0;
 
@@ -200,7 +200,7 @@ int LinearSearch(List* list, int element)
 	return -1;
 }
 
-Node* GetElement(List* list, int index) 
+Node* GetElement(DoubleLinkedList* list, int index) 
 {
 
 	Node* node;
@@ -228,4 +228,5 @@ Node* GetElement(List* list, int index)
 		return node;
 	}
 }
+
 

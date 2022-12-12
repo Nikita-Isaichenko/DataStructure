@@ -29,10 +29,11 @@ struct Node
 	Node* Previos;
 };
 
+//TODO: naming
 /**
  * Хранит информацию о двусвязном списке.
  */
-struct List
+struct DoubleLinkedList
 {
 	/**
 	 * Длина списка.
@@ -54,27 +55,27 @@ struct List
  * Инициализирует список.
  * @param list список.
  */
-void InitList(List* list);
+void InitList(DoubleLinkedList* list);
 
 /**
  * Добавляет элемент в конец списка.
  * @param list список.
  * @param value добавляемое значение.
  */
-void Add(List* list, int value);
+void Add(DoubleLinkedList* list, int value);
 
 /**
  * Удаляет элемент из списка по индексу.
  * @param index индекс удаляемого элемента.
  */
-void Remove(List* list, int index);
+void Remove(DoubleLinkedList* list, int index);
 
 /**
  * Вставка элемента в начало.
  * @param list список.
  * @param value значение элемента.
  */
-void InsertInBegin(List* list, int value);
+void InsertInBegin(DoubleLinkedList* list, int value);
 
 /**
  * Вставка элемента после указанного индекса.
@@ -82,7 +83,7 @@ void InsertInBegin(List* list, int value);
  * @param index индекс.
  * @param value значение элемента.
  */
-void InsertAfter(List* list, int index, int value);
+void InsertAfter(DoubleLinkedList* list, int index, int value);
 
 /**
  * Вставка после указанного индекса.
@@ -90,13 +91,13 @@ void InsertAfter(List* list, int index, int value);
  * @param index индекс.
  * @param value значение элемента.
  */
-void InsertBefore(List* list, int index, int value);
+void InsertBefore(DoubleLinkedList* list, int index, int value);
 
 /**
  * Сортировка вставками.
  * @param list список.
  */
-void InsertionSort(List* list);
+void InsertionSort(DoubleLinkedList* list);
 
 /**
  * Перестановка двух узлов.
@@ -104,14 +105,14 @@ void InsertionSort(List* list);
  * @param first первый узел.
  * @param second второй узел.
  */
-void SwapElements(List* list, Node* first, Node* second);
+void SwapElements(DoubleLinkedList* list, Node* first, Node* second);
 
 /**
  * Линейный поиск элемента.
  * @param list список.
  * @param element искомый элемент.
  */
-int LinearSearch(List* list, int element);
+int LinearSearch(DoubleLinkedList* list, int element);
 
 /**
  * Получение элемента. Если индекс больше половины, перебор списка идет с конца,
@@ -119,7 +120,7 @@ int LinearSearch(List* list, int element);
  * @param list список.
  * @param index индекс элемента.
  */
-Node* GetElement(List* list, int index);
+Node* GetElement(DoubleLinkedList* list, int index);
 
 
 

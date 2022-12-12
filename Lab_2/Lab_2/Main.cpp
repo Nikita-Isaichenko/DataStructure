@@ -1,6 +1,7 @@
 #include <iostream>
 #include "DoubleLinkedList.h"
-#include "Actions.h"
+#include "IODoubleLinkedList.h"
+#include "Validation.h"
 
 using namespace std;
 
@@ -12,7 +13,7 @@ int main()
 {
 	setlocale(LC_ALL, "");
 
-	List* list = new List();
+	DoubleLinkedList* list = new DoubleLinkedList();
 
     InitList(list);
     PrintText();

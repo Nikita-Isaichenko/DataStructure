@@ -11,60 +11,54 @@
 /**
  * Добавляет элемент.
  */
-void AddElement(List* linkedList);
+void AddElement(DoubleLinkedList* linkedList);
 
 /**
  * Удаляет элемент.
  */
-void RemoveElement(List* linkedList);
+void RemoveElement(DoubleLinkedList* linkedList);
 
 /**
  * Вставляет элемент в начало.
  */
-void InsertElementInBegin(List* linkedList);
+void InsertElementInBegin(DoubleLinkedList* linkedList);
 
 /**
  * Вставляет элемент после.
  */
-void InsertElementAfter(List* linkedList);
+void InsertElementAfter(DoubleLinkedList* linkedList);
 
 /**
  * Вставляет элемент до.
  */
-void InsertElementBefore(List* linkedList);
+void InsertElementBefore(DoubleLinkedList* linkedList);
 
 /**
  * Выводит список в консоль.
  */
-void Show(List* linkedList);
+void Show(DoubleLinkedList* linkedList);
 
 /**
  * Сортирует список.
  */
-void SortList(List* linkedList);
+void SortList(DoubleLinkedList* linkedList);
 
 /**
  * Ищет элемент при помощи линейного поиска.
  */
-void LinearSearchElement(List* list);
-
-/**
- * Проверяет, является вводимая строка числом.
- * @param text описания для ввода.
- */
-int CheckingForDigit(const char* text);
+void LinearSearchElement(DoubleLinkedList* list);
 
 /**
  * Удаляет список.
  */
-void RemoveList(List* list);
+void RemoveList(DoubleLinkedList* list);
 
 /**
  * Создает список с рандомными значениями.
  * @param list список.
  * @param count кол-во элементов.
  */
-void RandomValues(List* list, int count);
+void RandomValues(DoubleLinkedList* list, int count);
 
 /**
 * Измеряет время для  операций вставки после индекса, вставки в начало, удаления, вставки в конец.

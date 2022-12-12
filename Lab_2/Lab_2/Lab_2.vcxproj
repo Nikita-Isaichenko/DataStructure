@@ -19,13 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Actions.h" />
+    <ClInclude Include="IODoubleLinkedList.h" />
     <ClInclude Include="DoubleLinkedList.h" />
+    <ClInclude Include="Tests.h" />
+    <ClInclude Include="Validation.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Actions.cpp" />
+    <ClCompile Include="IODoubleLinkedList.cpp" />
     <ClCompile Include="DoubleLinkedList.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Tests.cpp" />
+    <ClCompile Include="Validation.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

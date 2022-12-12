@@ -1,44 +1,14 @@
 #include <iostream>
-#include "Actions.h"
+#include "IODoubleLinkedList.h"
 #include "DoubleLinkedList.h"
+#include "Validation.h"
 #include <chrono>
 
 using namespace std;
 
-int CheckingForDigit(const char* text)
-{
-	if (text != "")
-	{
-		cout << text << endl;
-	}
 
-	int value;
-	while (true)
-	{
-		cin >> value;
-		if (cin.fail())
-		{
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			cout << "Произошла ошибка. Попробуйте снова" << endl;
-			continue;
-		}
-
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		if (std::cin.gcount() > 1)
-		{
-			cout << "Произошла ошибка. Попробуйте снова" << endl;
-			continue;
-		}
-
-		break;
-	}
-
-	return value;
-	
-}
-
-void AddElement(List* linkedList)
+//TODO: IODoubleLinkedList (done)
+void AddElement(DoubleLinkedList* linkedList)
 {
 	int value = CheckingForDigit("Введите значение добавляемого элемента: ");
 
@@ -46,7 +16,7 @@ void AddElement(List* linkedList)
 	Show(linkedList);
 }
 
-void RemoveElement(List* linkedList)
+void RemoveElement(DoubleLinkedList* linkedList)
 {
 	int index = CheckingForDigit("Введите индекс элемента для удаления: ");
 
@@ -54,7 +24,7 @@ void RemoveElement(List* linkedList)
 	Show(linkedList);
 }
 
-void InsertElementInBegin(List* linkedList)
+void InsertElementInBegin(DoubleLinkedList* linkedList)
 {
 	int value = CheckingForDigit("Введите значение добавляемого элемента: ");
 
@@ -62,7 +32,7 @@ void InsertElementInBegin(List* linkedList)
 	Show(linkedList);
 }
 
-void InsertElementAfter(List* linkedList)
+void InsertElementAfter(DoubleLinkedList* linkedList)
 {
 	int value = CheckingForDigit("Введите значение добавляемого элемента: ");
 	int index = CheckingForDigit("Введите индекс, после которого надо добавить элемент: ");
@@ -71,7 +41,7 @@ void InsertElementAfter(List* linkedList)
 	Show(linkedList);
 }
 
-void InsertElementBefore(List* linkedList) 
+void InsertElementBefore(DoubleLinkedList* linkedList) 
 {
 	int value = CheckingForDigit("Введите значение добавляемого элемента: ");
 	int index = CheckingForDigit("Введите индекс, перед которым надо добавить элемент: ");
@@ -80,13 +50,13 @@ void InsertElementBefore(List* linkedList)
 	Show(linkedList);
 }
 
-void SortList(List* list)
+void SortList(DoubleLinkedList* list)
 {
 	InsertionSort(list);
 	Show(list);
 }
 
-void Show(List* list)
+void Show(DoubleLinkedList* list)
 {
 	Node* node = list->Head;
 
@@ -103,7 +73,7 @@ void Show(List* list)
 
 }
 
-void LinearSearchElement(List* list)
+void LinearSearchElement(DoubleLinkedList* list)
 {
 	int value = CheckingForDigit("Введите значение искомого элемента: ");
 
@@ -119,7 +89,7 @@ void LinearSearchElement(List* list)
 	}
 }
 
-void RemoveList(List* list)
+void RemoveList(DoubleLinkedList* list)
 {
 	if (list->Head == nullptr)
 	{
@@ -142,32 +112,12 @@ void RemoveList(List* list)
 	list->Tail = nullptr;
 }
 
-void RandomValues(List* list, int count)
+void RandomValues(DoubleLinkedList* list, int count)
 {
 	srand(time(nullptr));
 
 	for (int i = 0; i < count; i++)
 	{
 		Add(list, rand() % 100);
-	}
-}
-
-void TestOperations() 
-{
-	List* list = new List();
-
-	for (int step = 10000; step <= 1000000; step += 10000)
-	{
-		RemoveList(list);
-		int testValue = 10;
-		RandomValues(list, step);
-		auto start = chrono::steady_clock::now();
-		InsertBefore(list, list->Length/2, testValue);
-		//InsertInBegin(list, testValue);
-		//Remove(list, list->Length / 2);
-		auto end = chrono::steady_clock::now();
-
-		cout << chrono::duration_cast<std::chrono::microseconds>(end - start).count()
-			<< ", " << step << endl;
 	}
 }
