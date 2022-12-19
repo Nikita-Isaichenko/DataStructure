@@ -2,6 +2,7 @@
 #include "DoubleLinkedList.h"
 #include "IODoubleLinkedList.h"
 #include "Validation.h"
+#include "Tests.h"
 
 using namespace std;
 
@@ -83,7 +84,4 @@ void PrintText()
         "8. Поиск элемента.\n9. Вывести массив\n10. Очистить список\n"
         "11. Провести тест для операций вставки и удаления."<< endl;
     cout << endl;
-}
-
-
-   
+}   

@@ -6,8 +6,6 @@
 
 using namespace std;
 
-
-//TODO: IODoubleLinkedList (done)
 void AddElement(DoubleLinkedList* linkedList)
 {
 	int value = CheckingForDigit("¬ведите значение добавл€емого элемента: ");
@@ -20,7 +18,11 @@ void RemoveElement(DoubleLinkedList* linkedList)
 {
 	int index = CheckingForDigit("¬ведите индекс элемента дл€ удалени€: ");
 
-	Remove(linkedList, index);
+	if (Remove(linkedList, index) == -1) 
+	{
+		cout << "¬веденный индекс выходит за пределы списка." << endl;
+	}
+
 	Show(linkedList);
 }
 
@@ -37,7 +39,11 @@ void InsertElementAfter(DoubleLinkedList* linkedList)
 	int value = CheckingForDigit("¬ведите значение добавл€емого элемента: ");
 	int index = CheckingForDigit("¬ведите индекс, после которого надо добавить элемент: ");
 
-	InsertAfter(linkedList, index, value);
+	if (InsertAfter(linkedList, index, value) == -1)
+	{
+		cout << "¬веденный индекс выходит за пределы списка." << endl;
+	}
+
 	Show(linkedList);
 }
 
@@ -46,7 +52,11 @@ void InsertElementBefore(DoubleLinkedList* linkedList)
 	int value = CheckingForDigit("¬ведите значение добавл€емого элемента: ");
 	int index = CheckingForDigit("¬ведите индекс, перед которым надо добавить элемент: ");
 
-	InsertBefore(linkedList, index, value);
+	if (InsertBefore(linkedList, index, value) == -1)
+	{
+		cout << "¬веденный индекс выходит за пределы списка." << endl;
+	}
+
 	Show(linkedList);
 }
 

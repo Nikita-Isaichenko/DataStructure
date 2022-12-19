@@ -29,7 +29,6 @@ struct Node
 	Node* Previos;
 };
 
-//TODO: naming
 /**
  * Хранит информацию о двусвязном списке.
  */
@@ -68,7 +67,7 @@ void Add(DoubleLinkedList* list, int value);
  * Удаляет элемент из списка по индексу.
  * @param index индекс удаляемого элемента.
  */
-void Remove(DoubleLinkedList* list, int index);
+int Remove(DoubleLinkedList* list, int index);
 
 /**
  * Вставка элемента в начало.
@@ -83,7 +82,7 @@ void InsertInBegin(DoubleLinkedList* list, int value);
  * @param index индекс.
  * @param value значение элемента.
  */
-void InsertAfter(DoubleLinkedList* list, int index, int value);
+int InsertAfter(DoubleLinkedList* list, int index, int value);
 
 /**
  * Вставка после указанного индекса.
@@ -91,7 +90,7 @@ void InsertAfter(DoubleLinkedList* list, int index, int value);
  * @param index индекс.
  * @param value значение элемента.
  */
-void InsertBefore(DoubleLinkedList* list, int index, int value);
+int InsertBefore(DoubleLinkedList* list, int index, int value);
 
 /**
  * Сортировка вставками.

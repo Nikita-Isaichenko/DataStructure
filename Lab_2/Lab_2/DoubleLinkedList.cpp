@@ -31,11 +31,13 @@ void Add(DoubleLinkedList* list, int value)
 	list->Tail = node;
 }
 
-void Remove(DoubleLinkedList* list, int index) 
+
+
+int Remove(DoubleLinkedList* list, int index)
 {
-	if (list->Head == nullptr || list->Length - 1 < index)
+	if (list->Head == nullptr || list->Length - 1 < index || index < 0)
 	{
-		return;
+		return -1;
 	}
 
 	Node* node = GetElement(list, index);
@@ -60,6 +62,7 @@ void Remove(DoubleLinkedList* list, int index)
 
 	list->Length--;
 	delete node;
+	return 0;
 }
 
 void InsertInBegin(DoubleLinkedList* list, int value)
@@ -84,11 +87,11 @@ void InsertInBegin(DoubleLinkedList* list, int value)
 	list->Head = node;
 }
 
-void InsertAfter(DoubleLinkedList* list, int index, int value)
+int InsertAfter(DoubleLinkedList* list, int index, int value)
 {
-	if (list->Head == nullptr || list->Length - 1 < index)
+	if (list->Head == nullptr || list->Length - 1 < index || index < 0)
 	{		
-		return;
+		return -1;
 	}
 
 	Node* node = new Node();
@@ -112,13 +115,14 @@ void InsertAfter(DoubleLinkedList* list, int index, int value)
 	}
 
 	list->Length++;
+	return 0;
 }
 
-void InsertBefore(DoubleLinkedList* list, int index, int value)
+int InsertBefore(DoubleLinkedList* list, int index, int value)
 {
-	if (list->Head == nullptr || list->Length - 1 < index)
+	if (list->Head == nullptr || list->Length - 1 < index || index < 0)
 	{
-		return;
+		return -1;
 	}
 
 	Node* node = new Node();
@@ -142,6 +146,7 @@ void InsertBefore(DoubleLinkedList* list, int index, int value)
 	}
 
 	list->Length++;
+	return 0;
 }
 
 void SwapElements(DoubleLinkedList* list, Node* first, Node* second)

@@ -60,11 +60,6 @@ void RemoveList(DoubleLinkedList* list);
  */
 void RandomValues(DoubleLinkedList* list, int count);
 
-/**
-* Измеряет время для  операций вставки после индекса, вставки в начало, удаления, вставки в конец.
-*/
-void TestOperations();
-
 
 
 
