@@ -18,6 +18,11 @@ void Menu();
  */
 void MenuStack();
 
+/**
+ * \brief меню для работы с кольцевым буфером.
+ */
+void MenuRingBuffer();
+
 
 
 

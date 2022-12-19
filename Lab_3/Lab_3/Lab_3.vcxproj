@@ -142,12 +142,14 @@
     <ClCompile Include="IOStack.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="RingBuffer.cpp" />
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="Validation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IOStack.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="RingBuffer.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Validation.h" />
   </ItemGroup>
