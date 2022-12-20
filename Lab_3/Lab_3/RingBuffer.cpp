@@ -1,38 +1,48 @@
 #include "RingBuffer.h"
 
-const int Capacity = 4;
 
-
-void InitRingBuffer(RingBuffer* buffer)
+RingBuffer* InitRingBuffer(int sizeBuffer)
 {
-	buffer->Size = Capacity;
-	buffer->FreeMemory = Capacity;
+	RingBuffer* buffer = new RingBuffer();
+
+	buffer->Size = sizeBuffer;
+	buffer->FreeMemory = sizeBuffer;
 	buffer->UsedMemory = 0;
-	buffer->Buffer = new int[buffer->Size];
+	buffer->Buffer = new int[sizeBuffer];
 	buffer->IndexInput = 0;
 	buffer->IndexOutput = 0;
+
+	return buffer;
 }
 
-void Push(RingBuffer* buffer, int data)
+void PushRingBuffer(RingBuffer* buffer, int data)
 {
 	if (buffer->IndexInput > buffer->Size - 1)
 	{
 		buffer->IndexInput = 0;
 	}
 
-	if (FreeMemoryInfo(buffer) == 0)
+	if (buffer->IndexInput == buffer->IndexOutput && 
+		UsedMemoryInfo(buffer) > 0) 
 	{
-		Resize(buffer);
+		buffer->IndexOutput++;
+
+		if (buffer->IndexOutput > buffer->Size - 1)
+		{
+			buffer->IndexOutput = 0;
+		}
 	}
 
-	
 	buffer->Buffer[buffer->IndexInput++] = data;
-	buffer->FreeMemory--;
-	buffer->UsedMemory++;
-	
+
+	if (FreeMemoryInfo(buffer) > 0)
+	{
+		buffer->FreeMemory--;
+		buffer->UsedMemory++;
+	}
 }
 
-void Resize(RingBuffer* buffer)
+void ResizeRingBuffer(RingBuffer* buffer)
 {
 	int oldSize = buffer->Size;
 
@@ -53,7 +63,7 @@ void Resize(RingBuffer* buffer)
 	buffer->FreeMemory = buffer->Size - oldSize;
 }
 
-int Pop(RingBuffer* buffer) 
+int PopRingBuffer(RingBuffer* buffer) 
 {
 	if (UsedMemoryInfo(buffer) > 0) 
 	{
@@ -78,5 +88,4 @@ void Clear(RingBuffer* buffer)
 	buffer->FreeMemory = buffer->Size;
 	buffer->UsedMemory = 0;
 	buffer->IndexInput = buffer->IndexOutput;
-
 }

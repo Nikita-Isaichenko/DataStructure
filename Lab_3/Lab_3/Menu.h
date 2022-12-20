@@ -23,6 +23,13 @@ void MenuStack();
  */
 void MenuRingBuffer();
 
+/**
+ * \brief меню для работы с очередью на основе кольцевого буфера.
+ */
+void MenuQueueRingBuffer();
+
+
+
 
 
 

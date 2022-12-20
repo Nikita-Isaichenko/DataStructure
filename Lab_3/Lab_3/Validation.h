@@ -4,4 +4,3 @@
  * @param text описания для ввода.
  */
 int CheckingForDigit(const char* text);
-

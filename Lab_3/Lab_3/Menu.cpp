@@ -4,10 +4,13 @@
 #include "Stack.h"
 #include "IOStack.h"
 #include "RingBuffer.h"
+#include "QueueRingBuffer.h"
+
 
 using namespace std;
 
 void PrintRingBuffer(RingBuffer* buffer);
+void PrintQueueRingBuffer(QueueRingBuffer* queue);
 
 void Menu()
 {
@@ -15,6 +18,7 @@ void Menu()
 	{		
 		cout << "1. Работа со стеком." << endl;
 		cout << "2. Работа с кольцевым буффером." << endl;
+		cout << "3. Работа с очередью на основе кольцевого буфера." << endl;
 		cout << endl;
 
 		int key = CheckingForDigit("Введите номер действия: ");
@@ -28,6 +32,10 @@ void Menu()
 		case 2:
 			system("cls");
 			MenuRingBuffer();
+			break;
+		case 3:
+			system("cls");
+			MenuQueueRingBuffer();
 			break;
 		default:
 			cout << "Некорректный номер." << endl;
@@ -75,7 +83,7 @@ void MenuStack()
 			stack = nullptr;
 			break;
 		case 5:
-			delete stack;
+			DeleteStack(stack);
 			system("cls");
 			return;
 		default:
@@ -90,12 +98,12 @@ void MenuStack()
 
 void MenuRingBuffer()
 {
-	
-
 	RingBuffer* buffer = new RingBuffer();
-	InitRingBuffer(buffer);
 	
 	cout << "Кольцевой буфер" << endl;
+
+	int size = CheckingForDigit("Введите размер кольцевого буфера: ");
+	buffer = InitRingBuffer(size);
 
 	while (true)
 	{
@@ -104,7 +112,8 @@ void MenuRingBuffer()
 		cout << "2. Вывести занятое место." << endl;
 		cout << "3. Добавить элемент в буфер." << endl;
 		cout << "4. Достать элемент из буфера." << endl;
-		cout << "5. Вернуться назад." << endl;
+		cout << "5. Увеличить размер кольцевого буфера." << endl;
+		cout << "6. Вернуться назад." << endl;
 
 		int key = CheckingForDigit("Введите номер действия: ");
 
@@ -125,14 +134,14 @@ void MenuRingBuffer()
 		case 3:
 		{
 			int value = CheckingForDigit("Введите добавляемое значение: ");
-			Push(buffer, value);
+			PushRingBuffer(buffer, value);
 			PrintRingBuffer(buffer);
 			break;
 		}
 		case 4:
 			if (UsedMemoryInfo(buffer) > 0) 
 			{
-				cout << "Значение из буфера: " << Pop(buffer) << endl;
+				cout << "Значение из буфера: " << PopRingBuffer(buffer) << endl;
 				PrintRingBuffer(buffer);
 			}
 			else 
@@ -142,6 +151,11 @@ void MenuRingBuffer()
 
 			break;
 		case 5:
+			ResizeRingBuffer(buffer);
+			cout << "Новый размер буфера = " << buffer->Size << endl;
+			break;
+		case 6:
+			delete[] buffer->Buffer;
 			delete buffer;
 			system("cls");
 			return;
@@ -154,8 +168,96 @@ void MenuRingBuffer()
 		cout << "--------------------------------------------\n" << endl;
 	
 	}
+}
 
-	
+void MenuQueueRingBuffer()
+{
+	QueueRingBuffer* queue = nullptr;
+
+	cout << "Очередь на основе кольцевого буфера." << endl;
+
+	while (true)
+	{
+		cout << "0. Очистить консоль." << endl;
+		cout << "1. Создание очереди." << endl;
+		cout << "2. Добавить элемент в очередь." << endl;
+		cout << "3. Достать элемент из очереди." << endl;
+		cout << "4. Удалить очередь." << endl;
+		cout << "5. Вернуться назад." << endl;
+
+		int key = CheckingForDigit("Введите номер действия: ");
+
+		cout << "\n--------------------------------------------" << endl;
+		cout << "                                           |" << endl;
+
+		switch (key)
+		{
+		case 0:
+			system("cls");
+			break;
+		case 1:
+			if (queue != nullptr)
+			{
+				cout << "Очередь уже создана." << endl;
+			}
+			else
+			{
+				int size = CheckingForDigit("Введите размер очереди: ");
+				queue = InitQueueRingBuffer(size);
+				cout << "Очередь создана" << endl;
+			}
+
+			break;
+		case 2:
+			if (queue != nullptr) 
+			{
+				int value = CheckingForDigit("Введите значение: ");
+				EnqueueRingBuffer(queue, value);
+				PrintQueueRingBuffer(queue);
+			}
+			else 
+			{
+				cout << "Создайте очередь!" << endl;
+			}
+
+			break;
+		case 3:
+			if (queue != nullptr)
+			{
+				if (LenghtQueueRingBuffer(queue) > 0)
+				{
+					cout << "Значение: " << DequeueRingBuffer(queue) << endl;
+				}	
+				PrintQueueRingBuffer(queue);
+			}
+			else
+			{
+				cout << "Создайте очередь!" << endl;
+			}
+
+			break;
+		case 4:
+			if (queue != nullptr) 
+			{
+				DeleteQueueRingBuffer(queue);
+				delete queue;
+				queue = nullptr;
+				cout << "Очеред удалена." << endl;
+			}
+			
+			break;
+		case 5:
+			system("cls");
+			return;
+		default:
+			cout << "Некорректный номер." << endl;
+			break;
+		}
+
+		cout << "                                           |" << endl;
+		cout << "--------------------------------------------\n" << endl;
+
+	}
 }
 
 void PrintRingBuffer(RingBuffer* buffer)
@@ -173,5 +275,10 @@ void PrintRingBuffer(RingBuffer* buffer)
 	}
 
 	cout << endl;
-	cout << "Размер буфера: " << buffer->Size;
+	cout << "Размер буфера: " << buffer->Size << endl;
+}
+
+void PrintQueueRingBuffer(QueueRingBuffer* queue) 
+{
+	PrintRingBuffer(queue->Buffer);
 }

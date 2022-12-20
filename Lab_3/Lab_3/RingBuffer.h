@@ -49,17 +49,17 @@ struct RingBuffer
 /**
  * Инициализирует кольцевой буфер.
  */
-void InitRingBuffer(RingBuffer* buffer);
+RingBuffer* InitRingBuffer(int sizeBuffer);
 
 /**
  * Кладем значение в кольцевой буфер.
  */
-void Push(RingBuffer* buffer, int data);
+void PushRingBuffer(RingBuffer* buffer, int data);
 
 /**
  * Достаем значение из кольцевой буфера.
  */
-int Pop(RingBuffer* buffer);
+int PopRingBuffer(RingBuffer* buffer);
 
 /**
  * Вовращает информацию о свободном месте в кольцевом буфере.
@@ -74,10 +74,10 @@ int UsedMemoryInfo(RingBuffer* buffer);
 /**
  * Изменяет размер буфера.
  */
-void Resize(RingBuffer* buffer);
+void ResizeRingBuffer(RingBuffer* buffer);
 
 /**
- * Очищает буфер.
+ * Очищает кольцевой буфер.
  */
 void Clear(RingBuffer* buffer);
 
