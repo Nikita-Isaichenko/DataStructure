@@ -15,7 +15,7 @@ struct Stack
  * \brief Инициализирует стек.
  * \return Указатель на инициализированный стек.
  */
-Stack* InitStack(Stack* stack);
+Stack* InitStack(int size);
 
 /**
  * Добавляет значение в конец стека.
@@ -40,7 +40,7 @@ void CheckResize(Stack* stack);
 /**
  * \brief Проверяет, является ли стек пустым.
  */
-bool IsEmpty(Stack* stack);
+bool IsEmptyStack(Stack* stack);
 
 /**
  * \brief Удаляет стек.

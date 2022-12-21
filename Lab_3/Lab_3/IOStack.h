@@ -27,7 +27,7 @@ void PrintStack(Stack* stack);
 /**
  * \brief Создает стек.
  */
-Stack* CreateStack(Stack* stack);
+Stack* CreateStack(Stack* stack, int size);
 
 /**
  * \brief Проверяет, создан ли стек.

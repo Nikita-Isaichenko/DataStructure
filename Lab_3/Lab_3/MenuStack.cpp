@@ -33,8 +33,11 @@ void MenuStack()
 			system("cls");
 			break;
 		case 1:
-			stack = CreateStack(stack);
+		{
+			int size = CheckingForDigit("¬ведите размер дл€ стека: ");
+			stack = CreateStack(stack, size);
 			break;
+		}
 		case 2:
 			PushStack(stack);
 			break;
@@ -47,6 +50,7 @@ void MenuStack()
 			break;
 		case 5:
 			DeleteStack(stack);
+			stack = nullptr;
 			system("cls");
 			return;
 		default:

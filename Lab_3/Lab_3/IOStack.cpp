@@ -15,6 +15,10 @@ void PushStack(Stack* stack)
 		Push(stack, value);
 		PrintStack(stack);
 	}
+	else
+	{
+		cout << "Стек не создан. Создайте стек!" << endl;
+	}
 	
 }
 
@@ -22,7 +26,7 @@ void PopStack(Stack* stack)
 {
 	if (IsCreated(stack)) 
 	{
-		if (IsEmpty(stack))
+		if (IsEmptyStack(stack))
 		{
 			cout << "Стек пуст." << endl;
 			return;
@@ -32,10 +36,16 @@ void PopStack(Stack* stack)
 
 		PrintStack(stack);
 	}
+	else
+	{
+		cout << "Стек не создан. Создайте стек!" << endl;
+	}
 }
 
 void PrintStack(Stack* stack)
 {
+	cout << "Размер стека: " << stack->Capacity << endl;
+
 	for (int i = stack->Top; i >= 0; i--)
 	{
 		cout << "|____" << stack->Buffer[i] << "____|" << endl;
@@ -45,16 +55,10 @@ void PrintStack(Stack* stack)
 
 bool IsCreated(Stack* stack)
 {
-	if (stack == nullptr) 
-	{
-		cout << "Стек не создан. Создайте стек!" << endl;
-		return false;
-	}
-
-	return true;
+	return stack != nullptr;
 }
 
-Stack* CreateStack(Stack* stack)
+Stack* CreateStack(Stack* stack, int size)
 {
 	if (IsCreated(stack))
 	{
@@ -63,7 +67,7 @@ Stack* CreateStack(Stack* stack)
 	}
 
 	cout << "Стек успешно создан." << endl;
-	return InitStack(stack);
+	return InitStack(size);
 	
 }
 
@@ -73,5 +77,9 @@ void DeleteStack(Stack* stack)
 	{
 		Delete(stack);
 		cout << "Стек успешно удален." << endl;
+	}
+	else
+	{
+		cout << "Стек не создан. Создайте стек!" << endl;
 	}
 }

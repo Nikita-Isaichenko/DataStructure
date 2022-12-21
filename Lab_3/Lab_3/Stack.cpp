@@ -1,14 +1,14 @@
 #include "Stack.h"
 #include <iostream>
 
-const int Capacity = 3;
+const int MinSize = 4;
 
-Stack* InitStack(Stack* stack)
+Stack* InitStack(int size)
 {
-	stack = new Stack();
+	Stack* stack = new Stack();
 
-	stack->Capacity = Capacity;
-	stack->Buffer = new int[stack->Capacity];
+	stack->Capacity = size;
+	stack->Buffer = new int[size];
 	stack->Top = -1;
 
 	return stack;
@@ -27,7 +27,7 @@ void Push(Stack* stack, int data)
 
 int Pop(Stack* stack) 
 {
-	if (!IsEmpty(stack))
+	if (!IsEmptyStack(stack))
 	{
 		int value = stack->Buffer[stack->Top];
 		stack->Top--;
@@ -62,7 +62,7 @@ void CheckResize(Stack* stack)
 	}
 
 	if (stack->Top <= (stack->Capacity / stack->GrowthFactor) - 1
-		&& stack->Capacity > Capacity)
+		&& stack->Capacity > MinSize)
 	{
 		stack->Capacity = stack->Capacity / stack->GrowthFactor;
 		Resize(stack);
@@ -70,7 +70,7 @@ void CheckResize(Stack* stack)
 	}
 }
 
-bool IsEmpty(Stack* stack)
+bool IsEmptyStack(Stack* stack)
 {
 	return stack->Top == -1;
 }
@@ -78,5 +78,4 @@ bool IsEmpty(Stack* stack)
 void Delete(Stack* stack)
 {
 	delete[] stack->Buffer;
-	delete stack;
 }
