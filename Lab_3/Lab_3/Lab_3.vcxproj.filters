@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\Menu">
+      <UniqueIdentifier>{76018dee-fbde-4bdc-ba2e-89211397b860}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Menu">
+      <UniqueIdentifier>{e5708d78-a7ac-411b-8f41-94d0995d017e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -27,14 +33,20 @@
     <ClCompile Include="IOStack.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
+    <ClCompile Include="QueueRingBuffer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="RingBuffer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="QueueRingBuffer.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="MenuRingBuffer.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuStack.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuQueueRingBuffer.cpp">
+      <Filter>Исходные файлы\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,14 +59,20 @@
     <ClInclude Include="IOStack.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="RingBuffer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="QueueRingBuffer.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuRingBuffer.h">
+      <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuStack.h">
+      <Filter>Файлы заголовков\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuQueueRingBuffer.h">
+      <Filter>Файлы заголовков\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

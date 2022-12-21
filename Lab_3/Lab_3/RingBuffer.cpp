@@ -34,7 +34,7 @@ void PushRingBuffer(RingBuffer* buffer, int data)
 	}
 
 	buffer->Buffer[buffer->IndexInput++] = data;
-
+	
 	if (FreeMemoryInfo(buffer) > 0)
 	{
 		buffer->FreeMemory--;
@@ -61,6 +61,9 @@ void ResizeRingBuffer(RingBuffer* buffer)
 	buffer->IndexOutput = 0;
 	buffer->IndexInput = oldSize;
 	buffer->FreeMemory = buffer->Size - oldSize;
+	
+	delete[] buffer->Buffer;
+	buffer->Buffer = tempArray;
 }
 
 int PopRingBuffer(RingBuffer* buffer) 
@@ -69,7 +72,15 @@ int PopRingBuffer(RingBuffer* buffer)
 	{
 		buffer->FreeMemory++;
 		buffer->UsedMemory--;
-		return buffer->Buffer[buffer->IndexOutput++];	
+
+		int item = buffer->Buffer[buffer->IndexOutput++];
+
+		if (buffer->IndexOutput > buffer->Size - 1) 
+		{
+			buffer->IndexOutput = 0;
+		}
+
+		return item;
 	}
 }
 
@@ -83,9 +94,3 @@ int UsedMemoryInfo(RingBuffer* buffer)
 	return buffer->UsedMemory;
 }
 
-void Clear(RingBuffer* buffer)
-{
-	buffer->FreeMemory = buffer->Size;
-	buffer->UsedMemory = 0;
-	buffer->IndexInput = buffer->IndexOutput;
-}

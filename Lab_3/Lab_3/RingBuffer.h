@@ -76,11 +76,5 @@ int UsedMemoryInfo(RingBuffer* buffer);
  */
 void ResizeRingBuffer(RingBuffer* buffer);
 
-/**
- * Очищает кольцевой буфер.
- */
-void Clear(RingBuffer* buffer);
-
-
 
 

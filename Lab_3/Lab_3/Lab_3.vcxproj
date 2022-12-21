@@ -141,7 +141,9 @@
   <ItemGroup>
     <ClCompile Include="IOStack.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuQueueRingBuffer.cpp" />
+    <ClCompile Include="MenuRingBuffer.cpp" />
+    <ClCompile Include="MenuStack.cpp" />
     <ClCompile Include="QueueRingBuffer.cpp" />
     <ClCompile Include="RingBuffer.cpp" />
     <ClCompile Include="Stack.cpp" />
@@ -149,7 +151,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IOStack.h" />
-    <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuQueueRingBuffer.h" />
+    <ClInclude Include="MenuRingBuffer.h" />
+    <ClInclude Include="MenuStack.h" />
     <ClInclude Include="QueueRingBuffer.h" />
     <ClInclude Include="RingBuffer.h" />
     <ClInclude Include="Stack.h" />
