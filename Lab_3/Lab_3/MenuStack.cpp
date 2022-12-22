@@ -34,8 +34,16 @@ void MenuStack()
 			break;
 		case 1:
 		{
-			int size = CheckingForDigit("Введите размер для стека: ");
-			stack = CreateStack(stack, size);
+			if (stack == nullptr)
+			{
+				int size = CheckingForDigit("Введите размер для стека: ");
+				stack = CreateStack(stack, size);
+			}
+			else
+			{
+				cout << "Стек уже создан." << endl;
+			}
+			
 			break;
 		}
 		case 2:

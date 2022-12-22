@@ -1,7 +1,5 @@
 #include "Stack.h"
-#include <iostream>
 
-const int MinSize = 4;
 
 Stack* InitStack(int size)
 {
@@ -61,8 +59,7 @@ void CheckResize(Stack* stack)
 		return;
 	}
 
-	if (stack->Top <= (stack->Capacity / stack->GrowthFactor) - 1
-		&& stack->Capacity > MinSize)
+	if (stack->Top <= (stack->Capacity / stack->GrowthFactor) - 1)
 	{
 		stack->Capacity = stack->Capacity / stack->GrowthFactor;
 		Resize(stack);

@@ -48,7 +48,7 @@ void ResizeRingBuffer(RingBuffer* buffer)
 
 	int* tempArray = new int[buffer->Size *= buffer->GrowthFactor];
 
-	for (int i = 0; i < oldSize; i++)
+	for (int i = 0; i < buffer->UsedMemory; i++)
 	{
 		tempArray[i] = buffer->Buffer[buffer->IndexOutput++];
 
@@ -59,8 +59,8 @@ void ResizeRingBuffer(RingBuffer* buffer)
 	}
 
 	buffer->IndexOutput = 0;
-	buffer->IndexInput = oldSize;
-	buffer->FreeMemory = buffer->Size - oldSize;
+	buffer->IndexInput = buffer->UsedMemory;
+	buffer->FreeMemory = buffer->Size - buffer->UsedMemory;
 	
 	delete[] buffer->Buffer;
 	buffer->Buffer = tempArray;
