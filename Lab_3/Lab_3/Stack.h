@@ -5,9 +5,24 @@
  */
 struct Stack 
 {
+	/**
+	 * Буфер.
+	 */
 	int* Buffer;
+
+	/**
+	 * Индекс верхнего элемента.
+	 */
 	int Top;
+
+	/**
+	 * Размер буфера.
+	 */
 	int Capacity;
+
+	/**
+	 * Фактор роста.
+	 */
 	const int GrowthFactor = 2;
 };
 

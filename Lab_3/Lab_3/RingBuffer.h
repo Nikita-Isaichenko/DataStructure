@@ -25,7 +25,6 @@ struct RingBuffer
 	/**
 	 * Αστεπ.
 	 */
-
 	int* Buffer;
 
 	/**

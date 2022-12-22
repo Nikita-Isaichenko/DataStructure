@@ -19,12 +19,24 @@ struct QueueRingBuffer
 	RingBuffer* Buffer;
 };
 
+/**
+ * Инициализует кольцевой буфер.
+ */
 QueueRingBuffer* InitQueueRingBuffer(int sizeBuffer);
 
+/**
+ * Добавляет элемент в кольцевой буфер.
+ */
 void EnqueueRingBuffer(QueueRingBuffer* queue, int data);
 
+/**
+ * Достает элемент из кольцевого буфера.
+ */
 int DequeueRingBuffer(QueueRingBuffer* queue);
 
+/**
+ * Удаляет кольцевой буфер.
+ */
 void DeleteQueueRingBuffer(QueueRingBuffer* queue);
 
 /**
