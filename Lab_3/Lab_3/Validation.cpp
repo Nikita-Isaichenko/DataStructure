@@ -10,6 +10,7 @@ int CheckingForDigit(const char* text)
 		cout << text << endl;
 	}
 
+
 	int value;
 	while (true)
 	{
