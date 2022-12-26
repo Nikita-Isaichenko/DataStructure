@@ -65,7 +65,7 @@ void CheckResize(Stack* stack)
 	}
 
 	if (stack->Top <= (stack->Capacity / stack->GrowthFactor) - 1
-		&& stack->Capacity > stack->MinCapacity);
+		&& stack->Capacity > stack->MinCapacity)
 	{
 		stack->Capacity = stack->Capacity / stack->GrowthFactor;
 		Resize(stack);
