@@ -29,41 +29,54 @@ void MenuStack()
 
 		switch (key)
 		{
-		case 0:
-			system("cls");
-			break;
-		case 1:
-		{
-			if (stack == nullptr)
+			//TODO: done
+			case 0:
 			{
-				int size = CheckingForDigit("Введите размер для стека: ");
-				stack = CreateStack(stack, size);
+				system("cls");
+				break;
 			}
-			else
+			case 1:
 			{
-				cout << "Стек уже создан." << endl;
-			}
+				if (stack == nullptr)
+				{
+					int size = CheckingForDigit("Введите размер для стека: ");
+					stack = CreateStack(stack, size);
+				}
+				else
+				{
+					cout << "Стек уже создан." << endl;
+				}
 			
-			break;
-		}
-		case 2:
-			PushStack(stack);
-			break;
-		case 3:
-			PopStack(stack);
-			break;
-		case 4:
-			DeleteStack(stack);
-			stack = nullptr;
-			break;
-		case 5:
-			DeleteStack(stack);
-			stack = nullptr;
-			system("cls");
-			return;
-		default:
-			cout << "Некорректный номер." << endl;
-			break;
+				break;
+			}
+			case 2:
+			{
+				PushStack(stack);
+				break;
+			}
+			case 3:
+			{
+				PopStack(stack);
+				break;
+			}
+			case 4:
+			{
+				DeleteStack(stack);
+				stack = nullptr;
+				break;
+			}
+			case 5:
+			{
+				DeleteStack(stack);
+				stack = nullptr;
+				system("cls");
+				return;
+			}
+			default:
+			{
+				cout << "Некорректный номер." << endl;
+				break;
+			}
 		}
 
 		cout << "                                           |" << endl;

@@ -24,6 +24,11 @@ struct Stack
 	 * Фактор роста.
 	 */
 	const int GrowthFactor = 2;
+
+	/**
+	 * Минимальный размер буфера.
+	 */
+	const int MinCapacity = 4;
 };
 
 /**

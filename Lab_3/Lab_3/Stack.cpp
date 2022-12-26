@@ -5,6 +5,11 @@ Stack* InitStack(int size)
 {
 	Stack* stack = new Stack();
 
+	if (size < 4)
+	{
+		size = 4;
+	}
+
 	stack->Capacity = size;
 	stack->Buffer = new int[size];
 	stack->Top = -1;
@@ -59,7 +64,8 @@ void CheckResize(Stack* stack)
 		return;
 	}
 
-	if (stack->Top <= (stack->Capacity / stack->GrowthFactor) - 1)
+	if (stack->Top <= (stack->Capacity / stack->GrowthFactor) - 1
+		&& stack->Capacity > stack->MinCapacity);
 	{
 		stack->Capacity = stack->Capacity / stack->GrowthFactor;
 		Resize(stack);

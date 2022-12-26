@@ -35,6 +35,16 @@ void MenuQueueTwoStacks()
 		case 1:
 		{
 			int size = CheckingForDigit("Введите размер очереди: ");
+
+			queue = new QueueTwoStacks();
+
+			if (size < 4)
+			{
+				cout << "Введенный размер меньше минимального (4)"
+					"поэтому размер приведен к минимальному." << endl;
+				size = 4;
+			}
+
 			queue = InitQueueTwoStacks(size);
 		}
 			break;
@@ -102,14 +112,11 @@ void MenuQueueTwoStacks()
 void PrintQueueTwoStacks(QueueTwoStacks* queue)
 {
 	cout << "Стек для входных данных." << endl;
-	cout << "Размер стека: " << queue->InputStack->Capacity << endl;
 
 	PrintStack(queue->InputStack);
 
 	cout << endl;
-
 	cout << "Стек для выходных данных." << endl;
-	cout << "Размер стека: " << queue->OutputStack->Capacity << endl;
 
 	PrintStack(queue->OutputStack);
 

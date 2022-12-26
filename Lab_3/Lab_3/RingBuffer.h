@@ -42,6 +42,10 @@ struct RingBuffer
 	 */
 	int IndexOutput;
 
+	//TODO: done
+	/**
+	 * Фактор роста.
+	 */
 	const int GrowthFactor = 2;
 };
 
