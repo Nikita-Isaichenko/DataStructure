@@ -41,6 +41,12 @@ void MenuStack()
 				{
 					int size = CheckingForDigit("Введите размер для стека: ");
 					stack = CreateStack(stack, size);
+					if (size < stack->MinCapacity) 
+					{
+						cout << "Размер стека меньше минимального, поэтому"
+							"поэтому он автоматически определен до минимального (" <<
+							stack->MinCapacity << ")." << endl;
+					}
 				}
 				else
 				{

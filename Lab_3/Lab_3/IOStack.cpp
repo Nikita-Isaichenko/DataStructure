@@ -66,13 +66,7 @@ Stack* CreateStack(Stack* stack, int size)
 		return stack;
 	}
 
-	cout << "Стек успешно создан." << endl;
-
-	if (size < stack->MinCapacity)
-	{
-		cout << "Введенный размер меньше минимального (" <<
-			stack->MinCapacity << ") поэтому размер приведен к минимальному." << endl;
-	}
+	cout << "Стек успешно создан." << endl;	
 
 	return InitStack(size);
 	
