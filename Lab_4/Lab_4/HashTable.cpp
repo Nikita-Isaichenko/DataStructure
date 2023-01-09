@@ -129,11 +129,6 @@ int HashFunction(int capacity, string key)
 	return abs(hash);
 }
 
-void RemoveHashTable(HashTable* table)
-{
-	delete[] table->Array;
-}
-
 HashTable* Rehashing(HashTable* table)
 {
 	HashTable* newTable = InitHashTable(table->Capacity * table->GrowthFactor);
@@ -177,6 +172,4 @@ bool ResolveCollisions(Node* first, Node* node)
 
 		first = first->Next;
 	}
-
-	
 }

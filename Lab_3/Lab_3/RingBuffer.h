@@ -42,7 +42,6 @@ struct RingBuffer
 	 */
 	int IndexOutput;
 
-	//TODO: done
 	/**
 	 * Фактор роста.
 	 */

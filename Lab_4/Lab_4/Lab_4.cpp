@@ -67,11 +67,12 @@ void PrintHashTable(HashTable* table)
 	}
 }
 
-void PrintInfo(Dictionary* dictionary) 
+void PrintInfo(Dictionary* dictionary, HashTable* table) 
 {
+	cout << endl;
 	cout << "HashTable" << endl;
 	cout << "______________________________________________________" << endl;
-	PrintHashTable(dictionary->Table);
+	PrintHashTable(table);
 	cout << "______________________________________________________" << endl;
 	cout << endl;
 	cout << "Dictionary" << endl;
@@ -85,7 +86,9 @@ int main()
 	setlocale(LC_ALL, "ru");
 
 	Dictionary* dictionary = new Dictionary;
-	dictionary->Table = InitHashTable(2);
+	HashTable* hashTable = new HashTable;
+	hashTable = InitHashTable(4);
+	dictionary->Table = InitHashTable(4);
 
 	while (true)
 	{
@@ -93,6 +96,7 @@ int main()
 		cout << "2. Удалить." << endl;
 		cout << "3. Вывести информацию." << endl;
 		cout << "4. Найти." << endl;
+		cout << "5. Выйти." << endl;
 
 		int number = CheckingForDigit("Выберите действие: ");
 
@@ -105,22 +109,27 @@ int main()
 			{
 				string key = IsEmptyString("Введите ключ: ");
 				string value = IsEmptyString("Введите значение: ");
+				AddItem(dictionary, value, key);
+				AddElement(hashTable, key, value);
+				
+				float maxOccupancyDictionary =
+					dictionary->Table->Capacity * dictionary->Table->CoefficientOccupancy;
 
-				if (!AddItem(dictionary, value, key)) 
-				{
-					cout << "Ошибка, повторение ключа и значения" << endl;
-				}
-				else
-				{
-					PrintInfo(dictionary);
-				}
-
-				int maxOccupancy = dictionary->Table->Capacity * 4 / 3;
-
-				if (dictionary->Table->Count == maxOccupancy)
+				if (dictionary->Table->Count >= maxOccupancyDictionary)
 				{
 					dictionary->Table = Rehashing(dictionary->Table);
+					
 				}
+
+				float maxOccupancyTable =
+					hashTable->Capacity * hashTable->CoefficientOccupancy;
+
+				if (hashTable->Count >= maxOccupancyTable)
+				{
+					hashTable = Rehashing(hashTable);
+				}
+
+				PrintInfo(dictionary, hashTable);
 
 				break;
 			}
@@ -128,37 +137,56 @@ int main()
 			{
 				string key = IsEmptyString("Введите ключ: ");
 				
-				if (RemoveItem(dictionary, key) == -1)
+				if (RemoveItem(dictionary, key) == -1)		
 				{
-					cout << "Ошибка, такого ключа нет." << endl;
+					cout << "Ошибка, такого ключа нет в словаре." << endl;
 				}
-				else
+				if (RemoveElement(hashTable, key) == -1)
 				{
-					cout << "Элемент удален." << endl;
-					PrintInfo(dictionary);
+					cout << "Ошибка, такого ключа нет в хеш-таблице." << endl;
 				}
+
+				PrintInfo(dictionary, hashTable);
 
 				break;
 			}
 			case 3:
 			{
-				PrintInfo(dictionary);
+				PrintInfo(dictionary, hashTable);
 				break;
 			}
 			case 4:
 			{
 				string key = IsEmptyString("Введите ключ: ");
 
-				string searchValue = FindItem(dictionary, key);
-				if (searchValue == "")
+				string searchValueDictionary = FindItem(dictionary, key);
+
+				string searchValueTable = FindElement(hashTable, key);
+
+				if (searchValueDictionary == "")
 				{
-					cout << "Значение не найдено." << endl;
+					cout << "Значение не найдено для словаря." << endl;
+				}
+				else
+				{
+					cout << "Найденное значение в словаре: " << searchValueDictionary << endl;
+				}
+
+				if (searchValueTable == "")
+				{
+					cout << "Значение не найдено для хеш-таблицы." << endl;
 				}
 				else 
 				{
-					cout << "Найденное значение: " << searchValue << endl;
+					cout << "Найденное значение в хеш-таблице: " << searchValueTable << endl;
 				}
 				break;
+			}
+			case 5:
+			{
+				DeleteDictionary(dictionary);
+				delete dictionary;
+				return 0;
 			}
 			default:
 			{

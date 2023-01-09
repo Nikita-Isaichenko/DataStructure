@@ -13,6 +13,11 @@ struct HashTable
 	const int GrowthFactor = 2;
 
 	/**
+	 * Коэффицент заполнения.
+	 */
+	float CoefficientOccupancy = 4.0 / 3.0;
+
+	/**
 	 * Кол-во элементов.
 	 */
 	int Count;
@@ -58,11 +63,6 @@ HashTable* Rehashing(HashTable* table);
  * Хеш функция.
  */
 int HashFunction(int capacity, string key);
-
-/**
- * Удаление .
- */
-void RemoveHashTable(HashTable* table);
 
 /**
  * Разрешает коллизии.

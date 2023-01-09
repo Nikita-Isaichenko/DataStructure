@@ -29,7 +29,6 @@ void MenuStack()
 
 		switch (key)
 		{
-			//TODO: done
 			case 0:
 			{
 				system("cls");

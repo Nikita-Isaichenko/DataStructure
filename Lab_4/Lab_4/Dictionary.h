@@ -29,3 +29,12 @@ int RemoveItem(Dictionary* dict, string key);
  * Поиск элемента в словаре.
  */
 string FindItem(Dictionary* dict, string key);
+
+/**
+ * Удаление словаря.
+ */
+void DeleteDictionary(Dictionary* dict);
+
+
+
+
