@@ -136,6 +136,7 @@ int main()
 				{
 					DeleteBinaryTree(tree->Root);
 					delete tree;
+					delete tempTreeNode;
 				}
 				return 0;
 			}
