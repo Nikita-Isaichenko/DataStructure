@@ -20,14 +20,14 @@ int CheckingForDigit(const char* text)
 		{
 			std::cin.clear();
 			std::cin.ignore(32767, '\n');
-			cout << "Ïðîèçîøëà îøèáêà. Ïîïðîáóéòå ñíîâà" << endl;
+			cout << "Неверный ввод! Попробуйте еще раз" << endl;
 			continue;
 		}
 
 		std::cin.ignore(32767, '\n');
 		if (std::cin.gcount() > 1)
 		{
-			cout << "Ïðîèçîøëà îøèáêà. Ïîïðîáóéòå ñíîâà" << endl;
+			cout << "Неверный ввод! Попробуйте еще раз" << endl;
 			continue;
 		}
 
