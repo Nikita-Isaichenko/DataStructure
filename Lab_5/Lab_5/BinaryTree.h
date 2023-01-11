@@ -53,6 +53,11 @@ BinaryTreeNode* FindMin(BinaryTreeNode* node, BinaryTreeNode*& parentNode = temp
  */
 BinaryTreeNode* FindMax(BinaryTreeNode* node, BinaryTreeNode*& parentNode = tempTreeNode);
 
+/**
+ * Удаляет дерево.
+ */
+void DeleteTree(BinaryTree* tree)
+
 
 
 

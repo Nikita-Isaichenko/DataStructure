@@ -198,7 +198,7 @@ BinaryTreeNode* FindMin(BinaryTreeNode* node, BinaryTreeNode*& parentNode)
 	return node;
 }
 
-BinaryTreeNode* FindMax(BinaryTreeNode* node)
+BinaryTreeNode* FindMax(BinaryTreeNode* node, BinaryTreeNode*& parentNode)
 {
 	if (!node)
 	{
@@ -211,4 +211,9 @@ BinaryTreeNode* FindMax(BinaryTreeNode* node)
 	}
 
 	return node;
+}
+
+void DeleteTree(BinaryTree* tree)
+{
+
 }

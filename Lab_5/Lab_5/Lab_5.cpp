@@ -127,7 +127,7 @@ int main()
 					return 0;
 				}
 
-				//cout << "Максимальное значение: " << FindMax(tree->Root)->Data << endl;
+				cout << "Максимальное значение: " << FindMax(tree->Root)->Data << endl;
 				break;
 			}
 			case 7:
