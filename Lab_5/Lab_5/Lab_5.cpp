@@ -67,7 +67,7 @@ int main()
 				{
 					cout << "Дерево пустое." << endl;
 				
-					return 0;
+					break;
 				}
 
 				int data = CheckingForDigit("Введите удаляемое значение: ");
@@ -132,7 +132,12 @@ int main()
 			}
 			case 7:
 			{
-
+				if (tree != nullptr)
+				{
+					DeleteBinaryTree(tree->Root);
+					delete tree;
+				}
+				return 0;
 			}
 			default:
 			{

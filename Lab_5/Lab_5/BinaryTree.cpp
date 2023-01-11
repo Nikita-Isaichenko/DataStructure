@@ -213,7 +213,14 @@ BinaryTreeNode* FindMax(BinaryTreeNode* node, BinaryTreeNode*& parentNode)
 	return node;
 }
 
-void DeleteTree(BinaryTree* tree)
+void DeleteBinaryTree(BinaryTreeNode* currentNode)
 {
+	if (currentNode == nullptr)
+	{
+		return;
+	}
 
+	DeleteBinaryTree(currentNode->Left);
+	DeleteBinaryTree(currentNode->Right);
+	delete currentNode;
 }
