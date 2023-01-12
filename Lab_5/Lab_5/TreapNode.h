@@ -1,27 +1,31 @@
 #pragma once
 
 /**
- * \brief Представляет реализацию по представлению элемента декартово дерева.
+ * Структура узла декартового дерева.
  */
-struct TreapElement
+struct TreapNode
 {
 	/**
-	 * \brief Указатель на левый элемент.
-	 */
-	TreapElement* Left;
-
-	/**
-	 * \brief Указатель на правый элемент.
-	 */
-	TreapElement* Right;
-
-	/**
-	 * \brief Значение.
+	 * Значение.
 	 */
 	int Data;
 
 	/**
-	 * \brief Приоритет.
+	 * Приоритет.
 	 */
 	int Priority;
+
+	/**
+	 * Указатель на левый элемент.
+	 */
+	TreapNode* Left = nullptr;
+
+	/**
+	 * Указатель на правый элемент.
+	 */
+	TreapNode* Right = nullptr;
+
 };
+
+
+
