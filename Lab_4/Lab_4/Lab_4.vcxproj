@@ -142,7 +142,6 @@
     <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="Lab_4.cpp" />
     <ClCompile Include="Dictionary.cpp" />
-    <ClCompile Include="Node.cpp" />
     <ClCompile Include="Validation.cpp" />
   </ItemGroup>
   <ItemGroup>

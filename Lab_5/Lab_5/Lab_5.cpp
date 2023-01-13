@@ -5,6 +5,29 @@
 
 using namespace std;
 
+bool CheckEmptyTree(BinaryTree* tree) 
+{
+	if (!tree->Root)
+	{
+		cout << "Дерево пустое." << endl;
+
+		return true;
+	}
+
+	return false;
+}
+
+void CheckCorrectResult(bool result, const char* trueText, const char* falseText)
+{
+	if (result)
+	{
+		cout << trueText << endl;
+	}
+	else
+	{
+		cout << falseText << endl;
+	}
+}
 
 void PrintTree(BinaryTreeNode* currentNode, int level)
 {
@@ -44,107 +67,104 @@ void MenuBinaryTree()
 
 		switch (number)
 		{
-		case 1:
-		{
-			int count = CheckingForDigit("Введите кол-во добавляемых элементов: ");
-
-			AddRandomValues(tree, count);
-			PrintTree(tree->Root, 0);
-			break;
-		}
-		case 2:
-		{
-			int data = CheckingForDigit("Введите добавляемое значение: ");
-
-			AddElement(tree, data);
-			cout << "------------------------------------------" << endl;
-			PrintTree(tree->Root, 0);
-			break;
-		}
-		case 3:
-		{
-			if (!tree->Root)
+			case 1:
 			{
-				cout << "Дерево пустое." << endl;
+				int count = CheckingForDigit("Введите кол-во добавляемых элементов: ");
+
+				AddRandomValues(tree, count);
+				PrintTree(tree->Root, 0);
+				break;
+			}
+			case 2:
+			{
+				int data = CheckingForDigit("Введите добавляемое значение: ");
+
+				AddElement(tree, data);
+				cout << "------------------------------------------" << endl;
+				PrintTree(tree->Root, 0);
+				break;
+			}
+			case 3:
+			{//TODO: duplication(done)
+				if (CheckEmptyTree(tree))
+				{
+					break;
+				}
+
+				int data = CheckingForDigit("Введите удаляемое значение: ");
+				
+				if (RemoveElement(tree->Root, data))
+				{
+					cout << "Элемент успешно удален" << endl;
+				}
+				else
+				{
+					cout << "Ошибка удаления" << endl;
+				}
+
+				cout << "------------------------------------------" << endl;
+				PrintTree(tree->Root, 0);
+
 
 				break;
 			}
+			case 4:
+			{//TODO: duplication(done)
+				if (CheckEmptyTree(tree))
+				{
+					break;
+				}
 
-			int data = CheckingForDigit("Введите удаляемое значение: ");
+				int data = CheckingForDigit("Введите искомое значение: ");
+				BinaryTreeNode* parent = nullptr;
 
-			if (RemoveElement(tree->Root, data))
-			{
-				cout << "Элемент успешно удален" << endl;
-			}
-			else
-			{
-				cout << "Ошибка удаления" << endl;
-			}
+				if (FindElement(tree->Root, data, parent))
+				{
+					cout << "Элемент найден." << endl;
+				}
+				else
+				{
+					cout << "Элемент не найден" << endl;
+				}
 
-			cout << "------------------------------------------" << endl;
-			PrintTree(tree->Root, 0);
-
-
-			break;
-		}
-		case 4:
-		{
-			if (!tree->Root)
-			{
-				cout << "Дерево пустое." << endl;
 				break;
 			}
-
-			int data = CheckingForDigit("Введите искомое значение: ");
-
-			if (FindElement(tree->Root, data))
-			{
-				cout << "Элемент найден." << endl;
-			}
-			else
-			{
-				cout << "Элемент не найден" << endl;
-			}
-
-			break;
-		}
-		case 5:
-		{
-			if (!tree->Root)
-			{
-				cout << "Дерево пустое." << endl;
+			case 5:
+			{//TODO: duplication(done)
+				if (CheckEmptyTree(tree))
+				{
+					break;
+				}
+				BinaryTreeNode* parentMinNode = nullptr;
+				cout << "Минимальное значение: " << FindMin(tree->Root, parentMinNode)->Data << endl;
 				break;
 			}
-
-			cout << "Минимальное значение: " << FindMin(tree->Root)->Data << endl;
-			break;
-		}
-		case 6:
-		{
-			if (!tree->Root)
+			case 6:
 			{
-				cout << "Дерево пустое." << endl;
+				if (!tree->Root)
+				{
+					cout << "Дерево пустое." << endl;
+					break;
+				}
+
+				BinaryTreeNode* parentMaxNode = nullptr;
+				cout << "Максимальное значение: " << FindMax(tree->Root, parentMaxNode)->Data << endl;
 				break;
 			}
-
-			cout << "Максимальное значение: " << FindMax(tree->Root)->Data << endl;
-			break;
-		}
-		case 7:
-		{
-			if (tree != nullptr)
+			case 7:
 			{
-				DeleteBinaryTree(tree->Root);
-				delete tree;
-				//delete tempTreeNode;
+				if (tree != nullptr)
+				{
+					DeleteBinaryTree(tree->Root);
+					delete tree;			
+				}
+				return;
 			}
-			return;
-		}
-		default:
-		{
-			cout << "Неверный номер задание." << endl;
-			break;
-		}
+			default:
+			{
+				cout << "Неверный номер задание." << endl;
+				break;
+			}
 		}
 
 		cout << "                                           |" << endl;
@@ -188,88 +208,108 @@ void MenuTreap()
 
 		switch (number)
 		{
-		case 1:
-		{
-			int count = CheckingForDigit("Введите кол-во элементов: ");
-			AddRandomValues(treap, count);
-			PrintTreap(treap->Root, 0);
-
-			break;
-		}
-		case 2:
-		{
-			int data = CheckingForDigit("Введите добавляемое значение: ");
-
-			AddOptimized(treap->Root, data, rand() % treap->MaxPriority);
-			PrintTreap(treap->Root, 0);
-			break;
-		}
-		case 3:
-		{
-			int data = CheckingForDigit("Введите добавляемое значение: ");
-
-			AddNotOptimized(treap->Root, data, rand() % treap->MaxPriority);
-			PrintTreap(treap->Root, 0);
-			break;
-		}
-		case 4:
-		{
-			int data = CheckingForDigit("Введите удаляемое значение: ");
-
-			if (RemoveOptimized(treap->Root, data))
+			case 1:
 			{
-				cout << "Успешно удалено" << endl;
-			}
-			else
-			{
-				cout << "Ошибка удаления" << endl;
-			}
+				int count = CheckingForDigit("Введите кол-во элементов: ");
+				AddRandomValues(treap, count);
+				PrintTreap(treap->Root, 0);
 
-			PrintTreap(treap->Root, 0);
-			break;
-		}
-		case 5:
-		{
-			int data = CheckingForDigit("Введите удаляемое значение: ");
+				break;
+			}
+			case 2:
+			{
+				int data = CheckingForDigit("Введите добавляемое значение: ");
 
-			if (RemoveNotOptimized(treap->Root, data))
-			{
-				cout << "Успешно удалено" << endl;
+				AddOptimized(treap->Root, data, rand() % treap->MaxPriority);
+				PrintTreap(treap->Root, 0);
+				break;
 			}
-			else
+			case 3:
 			{
-				cout << "Ошибка удаления" << endl;
+				int data = CheckingForDigit("Введите добавляемое значение: ");
+
+				AddNotOptimized(treap->Root, data, rand() % treap->MaxPriority);
+				PrintTreap(treap->Root, 0);
+				break;
 			}
+			case 4:
+			{
+				int data = CheckingForDigit("Введите удаляемое значение: ");
+				
+				CheckCorrectResult(RemoveOptimized(treap->Root, data),
+					"Успешно удалено", "Ошибка удаления");
+
+				PrintTreap(treap->Root, 0);
+				break;
+			}
+			case 5:
+			{
+				int data = CheckingForDigit("Введите удаляемое значение: ");
+
+				CheckCorrectResult(RemoveNotOptimized(treap->Root, data),
+					"Успешно удалено", "Ошибка удаления");
 			
-			PrintTreap(treap->Root, 0);
-			break;
-		}
-		case 6:
-		{
-			int data = CheckingForDigit("Введите искомое значение: ");
-
-			if (FindElement(treap->Root, data))
-			{
-				cout << "Элемент найден" << endl;
+				PrintTreap(treap->Root, 0);
+				break;
 			}
-			else
+			case 6:
 			{
-				cout << "Элемент не найден" << endl;
-			}
+				int data = CheckingForDigit("Введите искомое значение: ");
+				
+				CheckCorrectResult(FindElement(treap->Root, data) ? true : false,
+					"Элемент найден", "Элемент не найден");
 
-			break;
-		}
-		case 7:
-		{
-			DeleteTreap(treap->Root);
-			delete treap;
-			return;
-		}
-		default:
-		{
-			cout << "Неверный номер задание." << endl;
-			break;
-		}
+				break;
+			}
+			case 7:
+			{
+				DeleteTreap(treap->Root);
+				delete treap;
+				
+				return;
+			}
+			case 8:
+			{
+				int n = CheckingForDigit("");
+				TreapNode* left;
+				TreapNode* right;
+				Split(treap->Root, n, left, right);
+				PrintTreap(left, 0);
+				cout << "-------------------------------------------------------" << endl;
+				PrintTreap(right, 0);
+				system("pause");
+				cout << "--------------------------------------------------------" << endl;
+				treap->Root = Merge(left, right);
+				PrintTreap(treap->Root, 0);
+				break;
+			}
+			case 9:
+			{
+				int data = CheckingForDigit("значение: ");
+				int p = CheckingForDigit("Приоритет: ");
+
+				AddOptimized(treap->Root, data, p);
+				PrintTreap(treap->Root, 0);
+				break;
+			}
+			case 10:
+			{
+				int data = CheckingForDigit("значение: ");
+				int p = CheckingForDigit("Приоритет: ");
+
+				AddNotOptimized(treap->Root, data, p);
+				PrintTreap(treap->Root, 0);
+				break;
+			}
+			case 11:
+			{
+				
+			}
+			default:
+			{
+				cout << "Неверный номер задание." << endl;
+				break;
+			}
 		}
 
 		cout << "                                           |" << endl;
@@ -293,18 +333,19 @@ int main()
 
 		switch (key)
 		{
-		case 1:
-			system("cls");
-			MenuBinaryTree();
-			break;
-		case 2:
-			system("cls");
-			MenuTreap();
-			break;
-		default:
-			cout << "Некорректный номер." << endl;
-			break;
-		}
+			//todo rsdn(done)
+			case 1:
+				system("cls");
+				MenuBinaryTree();
+				break;
+			case 2:
+				system("cls");
+				MenuTreap();
+				break;
+			default:
+				cout << "Некорректный номер." << endl;
+				break;
+			}
 	}
 	
 }

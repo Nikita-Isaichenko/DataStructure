@@ -62,21 +62,46 @@ void AddNotOptimized(TreapNode*& root, int data, int priority)
 void AddOptimized(TreapNode*& root, int data, int priority)
 {
 	TreapNode* current = root;
-	while (current != nullptr && current->Priority > priority)
+
+	if (current != nullptr)
 	{
-		if (current->Data > data)
+		/*while ((current->Left != nullptr || current->Right != nullptr) 
+			&& current->Priority > priority)
 		{
-			if (current->Left == nullptr) break;
+			if (current->Data > data)
+			{
+				if (current->Left == nullptr) break;
 
-			current = current->Left;
-		}
-		else
+				current = current->Left;
+			}
+			else
+			{
+				if (current->Right == nullptr) break;
+
+				current = current->Right;
+			}
+		}*/
+		while (current->Priority > priority)
 		{
-			if (current->Right == nullptr) break;
+			if (current->Data > data)
+			{
+				if (current->Left == nullptr) break;
 
-			current = current->Right;
+				if (current->Left->Priority < priority) break;
+
+				current = current->Left;
+			}
+			else
+			{
+				if (current->Right == nullptr) break;
+
+				if (current->Right->Priority < priority) break;
+
+				current = current->Right;
+			}
 		}
 	}
+	
 
 	TreapNode* newNode = new TreapNode;
 	newNode->Data = data;
@@ -99,7 +124,7 @@ void AddOptimized(TreapNode*& root, int data, int priority)
 	}
 }
 
-bool RemoveNotOptimized(TreapNode*& root, int data)
+TreapNode* RemoveNotOptimized(TreapNode*& root, int data)
 {
 	TreapNode* left;
 	TreapNode* right;
@@ -108,7 +133,7 @@ bool RemoveNotOptimized(TreapNode*& root, int data)
 	Split(right, data, deleteNode, right);
 	delete deleteNode;
 	root = Merge(left, right);
-
+	//TODO: неявное зло(done)
 	return deleteNode;
 }
 

@@ -34,24 +34,19 @@ BinaryTreeNode* FindParentNode(BinaryTreeNode* node, int data);
 bool RemoveElement(BinaryTreeNode*& root, int data);
 
 /**
- * Переменная заглушка.
- */
-extern BinaryTreeNode* tempTreeNode;
-
-/**
  * Поиска элемента.
  */
-BinaryTreeNode* FindElement(BinaryTreeNode* node, int data, BinaryTreeNode*& parentNode = tempTreeNode);
+BinaryTreeNode* FindElement(BinaryTreeNode* node, int data, BinaryTreeNode*& parentNode);
 
 /**
  * Находит минимальное значение.
  */
-BinaryTreeNode* FindMin(BinaryTreeNode* node, BinaryTreeNode*& parentNode = tempTreeNode);
+BinaryTreeNode* FindMin(BinaryTreeNode* node, BinaryTreeNode*& parentNode);
 
 /**
  * Находит максимальное значение.
  */
-BinaryTreeNode* FindMax(BinaryTreeNode* node, BinaryTreeNode*& parentNode = tempTreeNode);
+BinaryTreeNode* FindMax(BinaryTreeNode* node, BinaryTreeNode*& parentNode);
 
 /**
  * Удаляет дерево.

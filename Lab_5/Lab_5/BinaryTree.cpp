@@ -4,7 +4,8 @@
 #include <stdlib.h>
 
 
-BinaryTreeNode* tempTreeNode = nullptr;
+//todo rsdn(done)
+
 
 void AddRandomValues(BinaryTree* tree, int count)
 {
@@ -96,9 +97,11 @@ bool RemoveElement(BinaryTreeNode*& root, int data)
 	}
 	else if (foundNode->Left && foundNode->Right)
 	{
-		BinaryTreeNode* tempMinNode = FindMin(foundNode->Right);
+		BinaryTreeNode* parentMinNode = nullptr;
+		BinaryTreeNode* tempMinNode = FindMin(foundNode->Right, parentMinNode);
 		foundNode->Data = tempMinNode->Data;
 		RemoveElement(foundNode->Right, tempMinNode->Data);
+		//delete parentMinNode;
 		return true;
 	}
 	else if (foundNode->Right)
