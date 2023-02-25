@@ -3,10 +3,6 @@
 #include <time.h>
 #include <stdlib.h>
 
-
-//todo rsdn(done)
-
-
 void AddRandomValues(BinaryTree* tree, int count)
 {
 	srand(time(nullptr));

@@ -15,7 +15,9 @@ void AddRandomValues(Treap* treap, int count)
 void Split(TreapNode* node, int data, TreapNode*& left, TreapNode*& right)
 {
 	if (node == nullptr)
+	{
 		left = right = nullptr;
+	}
 	else
 	{
 		if (node->Data > data)
@@ -65,22 +67,6 @@ void AddOptimized(TreapNode*& root, int data, int priority)
 
 	if (current != nullptr)
 	{
-		/*while ((current->Left != nullptr || current->Right != nullptr) 
-			&& current->Priority > priority)
-		{
-			if (current->Data > data)
-			{
-				if (current->Left == nullptr) break;
-
-				current = current->Left;
-			}
-			else
-			{
-				if (current->Right == nullptr) break;
-
-				current = current->Right;
-			}
-		}*/
 		while (current->Priority > priority)
 		{
 			if (current->Data > data)
@@ -124,7 +110,7 @@ void AddOptimized(TreapNode*& root, int data, int priority)
 	}
 }
 
-TreapNode* RemoveNotOptimized(TreapNode*& root, int data)
+bool RemoveNotOptimized(TreapNode*& root, int data)
 {
 	TreapNode* left;
 	TreapNode* right;
@@ -134,7 +120,7 @@ TreapNode* RemoveNotOptimized(TreapNode*& root, int data)
 	delete deleteNode;
 	root = Merge(left, right);
 	//TODO: неявное зло(done)
-	return deleteNode;
+	return deleteNode != nullptr;
 }
 
 bool RemoveOptimized(TreapNode*& root, int data)

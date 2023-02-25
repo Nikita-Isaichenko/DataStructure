@@ -40,7 +40,7 @@ void AddNotOptimized(TreapNode*& root, int data, int priority);
 /**
  * Не оптимизированное удаление.
  */
-TreapNode* RemoveNotOptimized(TreapNode*& root, int data);
+bool RemoveNotOptimized(TreapNode*& root, int data);
 
 /**
  * Оптимизированное удаление.

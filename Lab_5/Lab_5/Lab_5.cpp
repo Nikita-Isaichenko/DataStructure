@@ -85,7 +85,7 @@ void MenuBinaryTree()
 				break;
 			}
 			case 3:
-			{//TODO: duplication(done)
+			{
 				if (CheckEmptyTree(tree))
 				{
 					break;
@@ -109,7 +109,7 @@ void MenuBinaryTree()
 				break;
 			}
 			case 4:
-			{//TODO: duplication(done)
+			{
 				if (CheckEmptyTree(tree))
 				{
 					break;
@@ -130,7 +130,7 @@ void MenuBinaryTree()
 				break;
 			}
 			case 5:
-			{//TODO: duplication(done)
+			{
 				if (CheckEmptyTree(tree))
 				{
 					break;
@@ -332,8 +332,7 @@ int main()
 		int key = CheckingForDigit("Введите номер действия: ");
 
 		switch (key)
-		{
-			//todo rsdn(done)
+		{			
 			case 1:
 				system("cls");
 				MenuBinaryTree();
@@ -345,7 +344,6 @@ int main()
 			default:
 				cout << "Некорректный номер." << endl;
 				break;
-			}
-	}
-	
+		}
+	}	
 }
